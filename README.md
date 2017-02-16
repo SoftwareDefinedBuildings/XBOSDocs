@@ -1,3 +1,8 @@
-# My Awesome API
+# XBOS
 
-This file file serves as your book's preface, a great place to describe your book's content and ideas.
+## The eXtensible Building Operating System
+
+
+
+A set of documentation to be continually expanded as XBOS reaches maturity
+
