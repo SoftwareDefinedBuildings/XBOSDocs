@@ -1,9 +1,9 @@
 # Summary
 
-## Overview
+* [XBOS Overview](README.md)
 
-* [My Awesome API](README.md)
+## Metadata
 
-## Methods
-
-* [Defining Methods](methods.md)
+* [Types of Metadata](metadata_types.md)
+* [Driver Metadata](metadata_driver.md)
+* [Brick Metadata](metadata_brick.md)
