@@ -8,7 +8,7 @@
 
 **TODO:** decide on and document standard PO types for signals and slots
 
-### Thermostat: `i.thermostat`
+### [Thermostat: `i.thermostat`](#i.thermostat)
 
 #### Signals
 
