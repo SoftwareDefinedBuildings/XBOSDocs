@@ -7,4 +7,8 @@
 * [Types of Metadata](metadata_types.md)
 * [Driver Metadata](metadata_driver.md)
     * [Standard Key/Value Pairs](standard_kv.md)
+    * [Device List](device_list.md)
+    * [Type List](type_list.md)
 * [Brick Metadata](metadata_brick.md)
+
+## Drivers
