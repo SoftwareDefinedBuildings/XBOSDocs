@@ -33,3 +33,4 @@ List of valid values for the `Type` key, roughly categorized
 * `Temperature`
 * `Relative Humidity`
 * `Carbon Dioxide`
+* `Illumination`
