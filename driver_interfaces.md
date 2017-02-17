@@ -1,18 +1,10 @@
 # Driver Interfaces
 
-{% method -%}
 ## Signals and Slots {#signalsandslots}
 
 **Signals** are URIs on which a driver publishes data and state
 
 **Slots** are URIs on which a driver receives input, e.g. actuation commands
-
-{% sample -%}
-```bash
-mydeployment/devices/s.thermostat/bedroom/i.thermostat/signal/temperature
-```
-
-{% endmethod %}
 
 ### Thermostat
 
