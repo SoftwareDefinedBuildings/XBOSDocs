@@ -33,6 +33,8 @@
 | `mode`              | <ul><li>0: Off</li> <li>1: Heating</li> <li>2: Cooling</li> <li>3: Auto</li> | |
 | `fan`               | `1` to enable the fan. `0` to disable the fan | |
 
+---
+
 ### Lighting: [`i.light`](#i.light)
 
 #### Signals
@@ -51,6 +53,8 @@
 | `brightness`| Integer scale from `0-100`, where `100` is full brightness | |
 | `color`| TBD | |
 
+---
+
 ### Plug [`i.plug`](#i.plug)
 
 #### Signals
@@ -66,6 +70,10 @@
 | ----------- | ------------ | ----- |
 | `state`     | `1` to enable plug. `0` to disable plug | |
 
+---
+
 ### Meter
+
+---
 
 ### Sensor

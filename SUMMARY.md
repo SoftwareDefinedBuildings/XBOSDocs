@@ -13,4 +13,5 @@
 
 ## Drivers
 
+* [Payload Object Types](payload_objects.md)
 * [Standard Interfaces](driver_interfaces.md)
