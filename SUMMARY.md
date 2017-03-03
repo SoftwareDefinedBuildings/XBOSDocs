@@ -13,7 +13,6 @@
 
 ## Drivers
 
-* [Payload Object Types](payload_objects.md)
 * [Standard Interfaces](driver_interfaces.md)
 * [Example: Thermostat Driver Interface](example-thermostat-driver-interface.md)
 
