@@ -2,21 +2,23 @@
 
 ## Driver URIs
 
-When writing a driver, thought must be given as to how to decompose a driver's functionality. There are several levels of decomposition in a driver, which are best explored with the context of an example URI:
+In a BOSSWAVE URI, we use the following standard structure:![](/assets/BOSSWAVE URI Decomp.png)
 
-```
-<namespace>/base/uri/<service name>/<instance>/<interface name>/{signal,slot}/<name>
-```
+`<namespace>/...`:  This is usually referred to as the **prefix** or the **base URI**. Drivers will be written to publish/consume data on URIs that are relative to the prefix, which simplifies deployment.
 
-BOSSWAVE processes will publish and subscribe on URIs that match this template. `base/uri` represents any intermediate path between `<namespace>` and `<service name>`
+`<service name>`: By convention, these start with `s.` \(e.g. `s.venstar` for the Venstar-brand thermostat\). A service is a name for a particular grouping of interfaces \(see below\), and typically represents an _instance_ of a driver. A driver may expose more than one service, and a service may be composed of multiple drivers \(rare\).
 
-* **Namespace**: the public key of the namespace. To participate on any URI starting with the namespace, a declaration of trust (DOT) must exist from the namespace key to the participating key
-* **Service Name**: typically vendor or device specific, e.g. "s.lifx", "s.venstar". The base/root URI of a service represents the instantiation of that service
-* **Interface Name**: a standard XBOS interface name, describing a generic function of the device, e.g. "i.xbos.light", "i.xbos.thermostat". Interfaces are well-defined; a standard set of XBOS interfaces exists [here](https://docs.xbos.io/driver_interfaces.html)
-* **Instance**: A particular instance of a service may expose several instances of an interface. In the case where there is only one instance of an interface for a service, the instance is conventionally denoted as the underscore character (`_`). Interfaces define the particular signals, slots and messages published
-* **Signals, Slots**: signals are outputs of the driver. Slots are input
-* **Name**: The name of the particular signal or slot
+`<instance name>`: A driver or service may expose several _instances_ of an interface. In the case where there is only one instance of an interface for a service, the instance is conventionally denoted as the underscore character \(`_`\). Otherwise, the instances are conventionally given some human-readable name that helps differentiate them. For example, a thermostat service that exposes multiple thermostats might name instances by which room the thermostats are in \(**note:** this kind of naming should _not_ be considered in place of proper metadata\)
+
+`<interface name>`: By convention, these start with `i.` \(e.g. `i.xbos.thermostat` for the standard XBOS thermostat interface\). Interfaces encapsulate a set of signals and slots \(see below\). Interfaces are well-defined, and a standard set of XBOS interfaces exist [here](https://docs.xbos.io/driver_interfaces.html).
+
+`signal`: is a keyword in the URI that indicates that the name specified afterwards is an _output_ of the driver
+
+`slot`: is a keyword in the URI that indicates that the name specified afterwards is an _input_ to the driver
+
+`<signal, slot name>`: this is the name of the signal or slot. These are defined by the corresponding interface.
 
 ## Message Types
 
 For now, XBOS messages published on BOSSWAVE are serialized using [msgpack](http://msgpack.org/index.html), an efficient binary format similar to a typed-JSON.
+
