@@ -13,10 +13,7 @@
 
 ## Drivers
 
+* [Driver Conventions](driver_conventions.md)
 * [Standard Interfaces](driver_interfaces.md)
 * [Example: Thermostat Driver Interface](example-thermostat-driver-interface.md)
-
-## Style Guide
-
-* [Driver Conventions](driver_conventions.md)
 

@@ -20,11 +20,42 @@ In a BOSSWAVE URI, we use the following standard structure:![](/assets/BOSSWAVE 
 
 ## Message Types and Payload Objects
 
-All messages exchanged on BOSSWAVE contain 0 or more **payload objects**. A payload object is a combination of a serialized binary data blob and a **payload object ID number** \(or **PO num**\). A **PO num** is a 32-bit number \(typically written in dot-decimal form\) that represents a combination of the _serialization _and _contents_ of the corresponding binary data blob.
+All messages exchanged on BOSSWAVE contain 0 or more **payload objects**. A payload object is a combination of a serialized binary data blob and a **payload object ID number** \(or **PO num**\). A **PO num** is a 32-bit number \(typically written in dot-decimal form\) that represents a combination of the _serialization \_and \_contents_ of the corresponding binary data blob.
 
 The [bw2\_pid](https://github.com/immesys/bw2_pid) repository contains the current allocations of PO nums and what they mean. Each XBOS interface defines a set of PO nums for the messages it publishes. By keeping PO nums consistent, consumers of data can easily find the relevant pieces of data in published data.
 
-As of this date, XBOS messages mostly use the [msgpack](http://msgpack.org/index.html) serialization format \(PO num `2.0.0.0/24` \).
+As of this date, XBOS messages mostly use the [msgpack](http://msgpack.org/index.html\) serialization format \(PO num `2.0.0.0/24` \).
+
+
+
+## Permissions
+
+The BOSSWAVE URI structure allows us different permission granularities, based on what URI pattern we grant to. There are 2 main flavors of BOSSWAVE permissions: _publish_ and _consume. _In BOSSWAVE, an entity can be granted permission to _publish_ or _consume_ on a URI pattern; for a given URI, the entity is allowed to perform a requested action only if it has been granted that permission on a matching URI pattern.
+
+**Note**: right now we assume an understanding of `*`, `+`, `P`, `C`, `C+` and `C*` in the context of BOSSWAVE permissions.
+
+Here are some common permission patterns in XBOS:
+
+* `<namespace>/.../<service name>/*`:  
+  * access to a particular service
+
+* `<namespace>/.../<service name>/<instance name>/*`: 
+  * access to all interfaces for particular instance within a service
+
+* `<namespace>/.../<service name>/<instance name>/<interface name>/*`: 
+  * access to a particular interface of a given instance
+* `<namespace>/.../<service name>/<instance name>/<interface name>/signal/<signal name>`: 
+  * access to a particular signal for a particular interface for a given instance
+  * Typically only read-permissions are given here \(`C`/consume permissions\)
+* `<namespace>/.../<service name>/<instance name>/<interface name>/slot/<slot name>`:
+  * access to a particular slot for a particular interface for a given instance
+
+Using BOSSWAVE's URI patterns, we can grant more general permissions as well; for example
+
+* `<namespace>/.../<service name>/+/<interface name>/signal/+`:
+  * access to all signals for all instances that expose a given interface
+
+
 
 
 
