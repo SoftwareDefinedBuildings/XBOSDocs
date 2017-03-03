@@ -6,6 +6,11 @@ BOSSWAVE has support for [many different types of POs](https://github.com/immesy
 
 For drivers part of an XBOS deployment, there are two primary modes of interaction:
 
-* **Reporting**: drivers publishing their data. The necessary fields here are the *value* being published, and also the *time* that value was published. Generating the timestamp on the device side allows for the alignment of multiple fields. For example, a relative humidity reading is valid at a given temperature; if the device measures both simultaneously, then this should be reflected in the reported messages. The majority of reported values will be numerical timeseries
+* **Reporting**: drivers publishing their data. The necessary fields here are the _value_ being published, and also the _time_ that value was published. Generating the timestamp on the device side allows for the alignment of multiple fields. For example, a relative humidity reading is valid at a given temperature; if the device measures both simultaneously, then this should be reflected in the reported messages. The majority of reported values will be numerical timeseries
 
-* **Actuating**: drivers receiving actuation commands. 
+* **Actuating**: drivers receiving actuation commands. The necessary components of the message are the parameter to change and the value to be used.
+
+In both of these 
+
+
+
