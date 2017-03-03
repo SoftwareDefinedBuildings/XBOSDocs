@@ -18,7 +18,13 @@ In a BOSSWAVE URI, we use the following standard structure:![](/assets/BOSSWAVE 
 
 `<signal, slot name>`: this is the name of the signal or slot. These are defined by the corresponding interface.
 
-## Message Types
+## Message Types and Payload Objects
 
-For now, XBOS messages published on BOSSWAVE are serialized using [msgpack](http://msgpack.org/index.html), an efficient binary format similar to a typed-JSON.
+All messages exchanged on BOSSWAVE contain 0 or more **payload objects**. A payload object is a combination of a serialized binary data blob and a **payload object ID number** \(or **PO num**\). A **PO num** is a 32-bit number \(typically written in dot-decimal form\) that represents a combination of the _serialization _and _contents_ of the corresponding binary data blob.
+
+The [bw2\_pid](https://github.com/immesys/bw2_pid) repository contains the current allocations of PO nums and what they mean. Each XBOS interface defines a set of PO nums for the messages it publishes. By keeping PO nums consistent, consumers of data can easily find the relevant pieces of data in published data.
+
+As of this date, XBOS messages mostly use the [msgpack](http://msgpack.org/index.html) serialization format \(PO num `2.0.0.0/24` \).
+
+
 
