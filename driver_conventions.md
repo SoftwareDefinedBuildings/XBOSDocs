@@ -46,9 +46,11 @@ Here are some common permission patterns in XBOS:
 
   * access to a particular interface of a given instance
 
-* `<namespace>/.../<service name>/<instance name>/<interface name>/signal/<signal name>`: 
+* `<namespace>/.../<service name>/<instance name>/<interface name>/signal/<signal name>`:
+
   * access to a particular signal for a particular interface for a given instance
   * Typically only read-permissions are given here \(`C`/consume permissions\)
+
 * `<namespace>/.../<service name>/<instance name>/<interface name>/slot/<slot name>`:
   * access to a particular slot for a particular interface for a given instance
 
@@ -56,6 +58,12 @@ Using BOSSWAVE's URI patterns, we can grant more general permissions as well; fo
 
 * `<namespace>/.../<service name>/+/<interface name>/signal/+`:
   * access to all signals for all instances that expose a given interface
+
+
+
+## Designing Signals and Slots
+
+
 
 
 
