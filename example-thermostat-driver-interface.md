@@ -4,12 +4,14 @@ Here we expand the [XBOS thermostat interface](https://github.com/SoftwareDefine
 
 For this example, we will assume the following:
 
-* we are using a Venstar thermostat \(with its [corresponding driver](https://github.com/SoftwareDefinedBuildings/bw2-contrib/tree/master/driver/venstar)\), so we will see its service name, `s.venstar`
+* we are using a Venstar thermostat \(with its [corresponding driver](https://github.com/SoftwareDefinedBuildings/bw2-contrib/tree/master/driver/venstar\)\), so we will see its service name, `s.venstar`
 * the base URI of the driver is `myhome/devices`
+* the Venstar driver exposes a single instance of a thermostat that we call "Kitchen"
+* this instance exposes the standard XBOS thermostat interface \(`i.xbos.thermostat`\)
 
 #### Properties
 
-Reproduce the list of properties for the tstat interface
+Properties are the names to be used in the messages published and consumed on the URIs of this driver. These properties will be referenced in the Messages section below
 
 | **Name** | **Type** | **Description** | **Units** | Required |
 | :--- | :--- | :--- | :--- | :--- |
@@ -25,6 +27,20 @@ Reproduce the list of properties for the tstat interface
 #### URIs
 
 Put a table of signal/slot URIs here and what's on those
+
+The signal \(and associated properties\) for our deployed thermostat is:
+
+* `myhome/devices/s.venstar/Kitchen/i.xbos.thermostat/signal/info`
+  * temperature
+  * relative\_humidity
+  * heating\_setpoint
+  * cooling\_setpoint
+  * override
+  * fan
+  * mode
+  * state
+* 
+
 
 #### Messages
 
