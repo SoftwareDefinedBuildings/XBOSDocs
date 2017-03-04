@@ -28,7 +28,7 @@ Properties are the names to be used in the messages published and consumed on th
 
 Put a table of signal/slot URIs here and what's on those
 
-The signal \(and associated properties\) for our deployed thermostat is:
+The signals and slots \(and associated properties\) for our deployed thermostat are:
 
 * `myhome/devices/s.venstar/Kitchen/i.xbos.thermostat/signal/info`
   * temperature
@@ -39,8 +39,23 @@ The signal \(and associated properties\) for our deployed thermostat is:
   * fan
   * mode
   * state
-* 
+* `myhome/devices/s.venstar/Kitchen/i.xbos.thermostat/slot/setpoint`
 
+  * heating\_setpoint
+
+  * cooling\_setpoint
+
+* `myhome/devices/s.venstar/Kitchen/i.xbos.thermostat/slot/state`
+
+  * heating\_setpoint
+
+  * cooling\_setpoint
+
+  * override
+
+  * state
+
+  * fan
 
 #### Messages
 
