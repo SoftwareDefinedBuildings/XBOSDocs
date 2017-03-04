@@ -39,25 +39,17 @@ The signals and slots \(and associated properties\) for our deployed thermostat 
   * fan
   * mode
   * state
-* `myhome/devices/s.venstar/Kitchen/i.xbos.thermostat/slot/setpoint`
-
+* `myhome/devices/s.venstar/Kitchen/i.xbos.thermostat/slot/setpoints`
   * heating\_setpoint
-
   * cooling\_setpoint
-
 * `myhome/devices/s.venstar/Kitchen/i.xbos.thermostat/slot/state`
-
   * heating\_setpoint
-
   * cooling\_setpoint
-
   * override
-
   * state
-
   * fan
 
 #### Messages
 
-Go over what would be sent on the URIs
+The contents of the messages published on the above URIs are determined by the properties we want to include in those interfaces
 
