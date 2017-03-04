@@ -51,5 +51,34 @@ The signals and slots \(and associated properties\) for our deployed thermostat 
 
 #### Messages
 
-The contents of the messages published on the above URIs are determined by the properties we want to include in those interfaces
+The contents of the messages published on the above URIs are determined by the properties we want to include in those interfaces.
+
+All of these payload objects use the PO num `2.1.1.0`, as specified in the XBOS thermostat interface file.
+
+A sample message published on the `info` signal would be the msgpack-serialized form of
+
+```json
+{
+    "temperature": 71.1,
+    "relative_humidity": 48.9,
+    "heating_setpoint": 70,
+    "cooling_setpoint": 82,
+    "override": 0,
+    "fan": 0,
+    "mode": 3,
+    "state": 0
+}
+```
+
+
+
+To actuate the heating setpoint, we would send the following message \(serialized as msgpack\) to either the `setpoints` or `state` signal \(depending on what we have permission to do\)
+
+```json
+{
+    "heating_setpoint": 80
+}
+```
+
+
 
