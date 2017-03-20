@@ -1,25 +1,54 @@
 # XBOS
 
-## The eXtensible Building Operating System
+XBOS is an e*X*tensible *B*uilding *O*perating *S*ystem, built on a family of open-source technologies.
 
-A set of documentation to be continually expanded as XBOS reaches maturity
+### Project Management
 
+- Project:
+    - https://github.com/SoftwareDefinedBuildings/XBOS/projects/1
+- Issues
+    - https://github.com/SoftwareDefinedBuildings/XBOS/issues
 
-## Sections
+### Infrastructure
 
-These all need to be written:
+BOSSWAVE: secure, distributed pub-sub with fine-grained permissions management
+- Documentation:
+    - https://github.com/immesys/bw2#getting-started
+    - https://github.com/immesys/bw2/wiki
+- Bindings:
+    - https://github.com/immesys/bw2/wiki#bindings
+- Source:
+    - https://github.com/immesys/bw2
 
-- Metadata:
-    - Valid (standard) key-value pairs
-    - Other conventions
-    - How to set/get (and the preferred ways of doing so)
-- Drivers:
-    - Where they are
-    - How to deploy
-    - How to write
-    - Conventions for writing/naming
-    - pointer to interfaces
-- Conventions:
-    - Standard interfaces for devices
-    - Standard PO types on bosswave
-- Archiving and accessing data
+BTrDB: fast, scalable timeseries database:
+- Homepage:
+    - http://btrdb.io/
+- Documentation:
+    - https://docs.smartgrid.store/
+- Bindings:
+    - https://godoc.org/gopkg.in/btrdb.v4
+- Source:
+    - https://github.com/SoftwareDefinedBuildings/btrdb
+
+Pundat: punctuated data archiver for BOSSWAVE:
+- Documentation:
+    - https://github.com/gtfierro/PunDat/wiki
+- Bindings:
+    - https://godoc.org/github.com/gtfierro/pundat/client
+- Source:
+    - https://github.com/gtfierro/PunDat
+
+Spawnpoint: secure container management for BOSSWAVE
+- Documentation:
+    - https://github.com/immesys/spawnpoint#spawnpoint
+    - https://github.com/immesys/spawnpoint/wiki
+- Source:
+    - https://github.com/immesys/spawnpoint
+
+### Drivers and Services
+
+BOSSWAVE Drivers
+- Repository: https://github.com/SoftwareDefinedBuildings/bw2-contrib
+
+XBOS Interfaces
+- Repository: https://github.com/SoftwareDefinedBuildings/XBOS/tree/master/interfaces
