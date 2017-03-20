@@ -6,8 +6,10 @@ XBOS is an e*X*tensible *B*uilding *O*perating *S*ystem, built on a family of op
 
 - Project:
     - https://github.com/SoftwareDefinedBuildings/XBOS/projects/1
-- Issues
+- Issues:
     - https://github.com/SoftwareDefinedBuildings/XBOS/issues
+- These docs:
+    - https://github.com/SoftwareDefinedBuildings/XBOSDocs
 
 ### Infrastructure
 
