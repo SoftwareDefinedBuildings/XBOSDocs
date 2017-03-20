@@ -46,7 +46,7 @@ The signals and slots \(and associated properties\) for our deployed thermostat 
   * heating\_setpoint
   * cooling\_setpoint
   * override
-  * state
+  * mode
   * fan
 
 #### Messages
