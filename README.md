@@ -11,6 +11,11 @@ XBOS is an e*X*tensible *B*uilding *O*perating *S*ystem, built on a family of op
 - These docs:
     - https://github.com/SoftwareDefinedBuildings/XBOSDocs
 
+### Bindings
+
+- [XBOS Python bindings](https://github.com/SoftwareDefinedBuildings/XBOS/tree/master/python)
+- [XBOS Bodge Scheduler](https://github.com/gtfierro/bodge)
+
 ### Infrastructure
 
 BOSSWAVE: secure, distributed pub-sub with fine-grained permissions management
