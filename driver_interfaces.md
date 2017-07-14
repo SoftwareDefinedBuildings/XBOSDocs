@@ -4,8 +4,7 @@
 >
 > Discussion of these interfaces is taking place on the [XBOS issue tracker](https://github.com/SoftwareDefinedBuildings/XBOS/issues/1)
 
-<a name="Light"></a>
-## XBOS Light
+## [XBOS Light](#<XBOS Light>)
 
 **Interface**: i.xbos.light
 
@@ -39,8 +38,7 @@
     
 
 
-<a name="Meter"></a>
-## XBOS Meter
+## [XBOS Meter](#<XBOS Meter>)
 
 **Interface**: i.xbos.meter
 
@@ -68,8 +66,7 @@
 ### Slots
 
 
-<a name="Plug"></a>
-## XBOS Plug
+## [XBOS Plug](#<XBOS Plug>)
 
 **Interface**: i.xbos.plug
 
@@ -108,8 +105,7 @@
     
 
 
-<a name="Temperature Sensor"></a>
-## XBOS Temperature Sensor
+## [XBOS Temperature Sensor](#<XBOS Temperature Sensor>)
 
 **Interface**: i.xbos.temperature_sensor
 
@@ -137,8 +133,7 @@
 ### Slots
 
 
-<a name="Thermostat"></a>
-## XBOS Thermostat
+## [XBOS Thermostat](#<XBOS Thermostat>)
 
 **Interface**: i.xbos.thermostat
 
@@ -191,8 +186,7 @@
     
 
 
-<a name="Window"></a>
-## XBOS Window
+## [XBOS Window](#<XBOS Window>)
 
 **Interface**: i.xbos.window
 
