@@ -44,8 +44,8 @@ func main() {
 
 	// subscribe
 	type signal struct {
-		temperature float64
-		time        int64
+		Temperature float64 `msgpack:"temperature"`
+		Time        int64   `msgpack:"time"`
 	}
 	c, err := client.Subscribe(&bw2.SubscribeParams{
 		URI: base_uri + "/signal/info",
@@ -57,8 +57,12 @@ func main() {
 	for msg := range c {
 		var current_state signal
 		po := msg.GetOnePODF("2.1.2.0/32")
-		po.(bw2.MsgPackPayloadObject).ValueInto(&current_state)
-		fmt.Println(current_state)
+		err := po.(bw2.MsgPackPayloadObject).ValueInto(&current_state)
+		if err != nil {
+			fmt.Println(err)
+		} else {
+			fmt.Println(current_state)
+		}
 	}
 }
 ```

@@ -69,15 +69,15 @@ func main() {
 
 	// subscribe
 	type signal struct {
-		temperature       float64
-		relative_humidity float64
-		heating_setpoint  float64
-		cooling_setpoint  float64
-		override          bool
-		fan               bool
-		mode              int64
-		state             int64
-		time              int64
+		Temperature       float64 `msgpack:"temperature"`
+		Relative_humidity float64 `msgpack:"relative_humidity"`
+		Heating_setpoint  float64 `msgpack:"heating_setpoint"`
+		Cooling_setpoint  float64 `msgpack:"cooling_setpoint"`
+		Override          bool    `msgpack:"override"`
+		Fan               bool    `msgpack:"fan"`
+		Mode              int64   `msgpack:"mode"`
+		State             int64   `msgpack:"state"`
+		Time              int64   `msgpack:"time"`
 	}
 	c, err := client.Subscribe(&bw2.SubscribeParams{
 		URI: base_uri + "/signal/info",
@@ -89,8 +89,12 @@ func main() {
 	for msg := range c {
 		var current_state signal
 		po := msg.GetOnePODF("2.1.1.0/32")
-		po.(bw2.MsgPackPayloadObject).ValueInto(&current_state)
-		fmt.Println(current_state)
+		err := po.(bw2.MsgPackPayloadObject).ValueInto(&current_state)
+		if err != nil {
+			fmt.Println(err)
+		} else {
+			fmt.Println(current_state)
+		}
 	}
 }
 ```
