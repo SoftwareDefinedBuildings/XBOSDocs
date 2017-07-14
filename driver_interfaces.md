@@ -4,10 +4,13 @@
 >
 > Discussion of these interfaces is taking place on the [XBOS issue tracker](https://github.com/SoftwareDefinedBuildings/XBOS/issues/1)
 
-## <a name="Light></a>XBOS Light
+<a name="Light"></a>
+## XBOS Light
 
 **Interface**: i.xbos.light
+
 **Description**: Standard XBOS lighting interface
+
 **PONUM**: 2.1.1.1
 
 ### <a name="LightProperties"></a>Properties
@@ -19,7 +22,8 @@
 | time | integer | nanoseconds since the Unix epoch | ns | false |
 
 
-### <a name="LightSignals"></a>Signals
+<a name="LightSignals"></a>
+### Signals
 - `info`:
     - `state`
     - `brightness`
@@ -27,17 +31,21 @@
     
 
 
-### <a name="LightSlots"></a>Slots
+<a name="LightSlots"></a>
+### Slots
 - `state`:
     - `state`
     - `brightness`
     
 
 
-## <a name="Meter></a>XBOS Meter
+<a name="Meter"></a>
+## XBOS Meter
 
 **Interface**: i.xbos.meter
+
 **Description**: Standard XBOS electric meter interface
+
 **PONUM**: 2.1.1.4
 
 ### <a name="MeterProperties"></a>Properties
@@ -48,20 +56,25 @@
 | time | integer | nanoseconds since the Unix epoch | ns | false |
 
 
-### <a name="MeterSignals"></a>Signals
+<a name="MeterSignals"></a>
+### Signals
 - `info`:
     - `current_demand`
     - `time`
     
 
 
-### <a name="MeterSlots"></a>Slots
+<a name="MeterSlots"></a>
+### Slots
 
 
-## <a name="Plug></a>XBOS Plug
+<a name="Plug"></a>
+## XBOS Plug
 
 **Interface**: i.xbos.plug
+
 **Description**: Standard XBOS plug interface
+
 **PONUM**: 2.1.1.2
 
 ### <a name="PlugProperties"></a>Properties
@@ -76,7 +89,8 @@
 | voltage | float | voltage at the plug (Volts) | V | false |
 
 
-### <a name="PlugSignals"></a>Signals
+<a name="PlugSignals"></a>
+### Signals
 - `info`:
     - `state`
     - `time`
@@ -87,16 +101,20 @@
     
 
 
-### <a name="PlugSlots"></a>Slots
+<a name="PlugSlots"></a>
+### Slots
 - `state`:
     - `state`
     
 
 
-## <a name="Temperature Sensor></a>XBOS Temperature Sensor
+<a name="Temperature Sensor"></a>
+## XBOS Temperature Sensor
 
 **Interface**: i.xbos.temperature_sensor
+
 **Description**: XBOS temperature sensor
+
 **PONUM**: 2.1.2.0
 
 ### <a name="Temperature SensorProperties"></a>Properties
@@ -107,20 +125,25 @@
 | time | integer | nanoseconds since the Unix epoch | ns | false |
 
 
-### <a name="Temperature SensorSignals"></a>Signals
+<a name="Temperature SensorSignals"></a>
+### Signals
 - `info`:
     - `temperature`
     - `time`
     
 
 
-### <a name="Temperature SensorSlots"></a>Slots
+<a name="Temperature SensorSlots"></a>
+### Slots
 
 
-## <a name="Thermostat></a>XBOS Thermostat
+<a name="Thermostat"></a>
+## XBOS Thermostat
 
 **Interface**: i.xbos.thermostat
+
 **Description**: Standard XBOS thermostat interface
+
 **PONUM**: 2.1.1.0
 
 ### <a name="ThermostatProperties"></a>Properties
@@ -138,7 +161,8 @@
 | time | integer | nanoseconds since the Unix epoch | ns | false |
 
 
-### <a name="ThermostatSignals"></a>Signals
+<a name="ThermostatSignals"></a>
+### Signals
 - `info`:
     - `temperature`
     - `relative_humidity`
@@ -152,7 +176,8 @@
     
 
 
-### <a name="ThermostatSlots"></a>Slots
+<a name="ThermostatSlots"></a>
+### Slots
 - `setpoints`:
     - `heating_setpoint`
     - `cooling_setpoint`
@@ -166,10 +191,13 @@
     
 
 
-## <a name="Window></a>XBOS Window
+<a name="Window"></a>
+## XBOS Window
 
 **Interface**: i.xbos.window
+
 **Description**: Standard XBOS operable window interface
+
 **PONUM**: 2.1.1.5
 
 ### <a name="WindowProperties"></a>Properties
@@ -180,12 +208,14 @@
 | time | integer | nanoseconds since the Unix epoch | ns | false |
 
 
-### <a name="WindowSignals"></a>Signals
+<a name="WindowSignals"></a>
+### Signals
 - `info`:
     - `state`
     - `time`
     
 
 
-### <a name="WindowSlots"></a>Slots
+<a name="WindowSlots"></a>
+### Slots
 
