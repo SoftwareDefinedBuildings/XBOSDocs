@@ -81,3 +81,28 @@ func main() {
 	}
 }
 ```
+### Interfacing in Python
+
+```python
+
+import time
+import msgpack
+
+from bw2python.bwtypes import PayloadObject
+from bw2python.client import Client
+
+bw_client = Client()
+bw_client.setEntityFromEnviron()
+bw_client.overrideAutoChainTo(True)
+
+def onMessage(bw_message):
+  for po in bw_message.payload_objects:
+    if po.type_dotted == (2,1,1,2):
+      print msgpack.unpackb(po.content)
+
+bw_client.subscribe("Plug uri ending in i.xbos.plug/signal/info", onMessage)
+
+print "Subscribing. Ctrl-C to quit."
+while True:
+  time.sleep(10000)
+```
