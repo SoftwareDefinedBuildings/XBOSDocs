@@ -35,3 +35,45 @@
     - `state`
     
 
+
+### Interfacing in Go
+
+```go
+package main
+
+import (
+	"fmt"
+	bw2 "gopkg.in/immesys/bw2bind.v5"
+)
+
+func main() {
+	client := bw2.ConnectOrExit("")
+	client.OverrideAutoChainTo(true)
+	client.SetEntityFromEnvironOrExit()
+
+	base_uri := "Plug uri goes here ending in i.xbos.plug"
+
+	// subscribe
+	type signal struct {
+		state      bool
+		time       int64
+		voltage    float
+		current    float
+		power      float
+		cumulative float
+	}
+	c, err := client.Subscribe(&bw2.SubscribeParams{
+		URI: base_uri + "/signal/info",
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	for msg := range c {
+		var current_state signal
+		po := msg.GetOnePODF("2.1.1.2/32")
+		po.(bw2.MsgPackPayloadObject).ValueInto(&current_state)
+		fmt.Println(current_state)
+	}
+}
+```

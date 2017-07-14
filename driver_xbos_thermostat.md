@@ -49,3 +49,48 @@
     - `fan`
     
 
+
+### Interfacing in Go
+
+```go
+package main
+
+import (
+	"fmt"
+	bw2 "gopkg.in/immesys/bw2bind.v5"
+)
+
+func main() {
+	client := bw2.ConnectOrExit("")
+	client.OverrideAutoChainTo(true)
+	client.SetEntityFromEnvironOrExit()
+
+	base_uri := "Thermostat uri goes here ending in i.xbos.thermostat"
+
+	// subscribe
+	type signal struct {
+		temperature       float64
+		relative_humidity float64
+		heating_setpoint  float64
+		cooling_setpoint  float64
+		override          bool
+		fan               bool
+		mode              int64
+		state             int64
+		time              int64
+	}
+	c, err := client.Subscribe(&bw2.SubscribeParams{
+		URI: base_uri + "/signal/info",
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	for msg := range c {
+		var current_state signal
+		po := msg.GetOnePODF("2.1.1.0/32")
+		po.(bw2.MsgPackPayloadObject).ValueInto(&current_state)
+		fmt.Println(current_state)
+	}
+}
+```
