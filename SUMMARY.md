@@ -13,6 +13,7 @@
     * [Thermostat](driver_xbos_thermostat.md)
     * [Light](driver_xbos_light.md)
     * [Meter](driver_xbos_meter.md)
+    * [PV Meter](driver_xbos_pv_meter.md)
     * [Plug](driver_xbos_plug.md)
     * [Temperature Sensor](driver_xbos_temperature_sensor.md)
     * [Window](driver_xbos_window.md)
