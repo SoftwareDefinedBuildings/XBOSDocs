@@ -12,7 +12,7 @@
 | **Name** | **Type** | **Description** | **Units** | **Required** |
 | :------- | :------- | :-------------- | :-------- | :----------- |
 | current_power | double | Current power generated | W | true |
-| time | integer | nanoseconds since the Unix epoch | ns | false |
+| time | integer | nanoseconds since the Unix epoch | ns | true |
 | total_energy_lifetime | double | Energy produced over Enphase lifetime | Wh | false |
 | total_energy_today | double | Energy produced today | Wh | false |
 
