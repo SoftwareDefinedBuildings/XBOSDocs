@@ -11,12 +11,12 @@
 
 | **Name** | **Type** | **Description** | **Units** | **Required** |
 | :------- | :------- | :-------------- | :-------- | :----------- |
-| cumulative | float | an aggregation from some epoch of true power (Kilo Watt Hours) | kWh | false |
-| current | float | current through the plug (Amperes) | A | false |
-| power | float | true power through the plug (Kilo Watts) | W | false |
+| cumulative | double | an aggregation from some epoch of true power (Kilo Watt Hours) | kWh | false |
+| current | double | current through the plug (Amperes) | A | false |
+| power | double | true power through the plug (Kilo Watts) | W | false |
 | state | boolean | Whether or not the plug is enabled | on/off | true |
 | time | integer | nanoseconds since the Unix epoch | ns | false |
-| voltage | float | voltage at the plug (Volts) | V | false |
+| voltage | double | voltage at the plug (Volts) | V | false |
 
 
 ### Signals
@@ -55,12 +55,12 @@ func main() {
 
 	// subscribe
 	type signal struct {
-		State      bool  `msgpack:"state"`
-		Time       int64 `msgpack:"time"`
-		Voltage    float `msgpack:"voltage"`
-		Current    float `msgpack:"current"`
-		Power      float `msgpack:"power"`
-		Cumulative float `msgpack:"cumulative"`
+		State      bool    `msgpack:"state"`
+		Time       int64   `msgpack:"time"`
+		Voltage    float64 `msgpack:"voltage"`
+		Current    float64 `msgpack:"current"`
+		Power      float64 `msgpack:"power"`
+		Cumulative float64 `msgpack:"cumulative"`
 	}
 	c, err := client.Subscribe(&bw2.SubscribeParams{
 		URI: base_uri + "/signal/info",

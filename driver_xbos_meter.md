@@ -11,13 +11,17 @@
 
 | **Name** | **Type** | **Description** | **Units** | **Required** |
 | :------- | :------- | :-------------- | :-------- | :----------- |
-| current_demand | double | Current measured demand | KW | true |
-| time | integer | nanoseconds since the Unix epoch | ns | false |
+| apparent_power | double | Current apparent power reading | kVA | false |
+| power | double | Current measured power | kW | true |
+| time | integer | nanoseconds since the Unix epoch | ns | true |
+| voltage | double | Current voltage reading | V | false |
 
 
 ### Signals
 - `info`:
-    - `current_demand`
+    - `power`
+    - `voltage`
+    - `apparent_power`
     - `time`
     
 
@@ -44,7 +48,9 @@ func main() {
 
 	// subscribe
 	type signal struct {
-		Current_demand float64 `msgpack:"current_demand"`
+		Power          float64 `msgpack:"power"`
+		Voltage        float64 `msgpack:"voltage"`
+		Apparent_power float64 `msgpack:"apparent_power"`
 		Time           int64   `msgpack:"time"`
 	}
 	c, err := client.Subscribe(&bw2.SubscribeParams{
