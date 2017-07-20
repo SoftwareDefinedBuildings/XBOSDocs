@@ -23,6 +23,7 @@
 - `info`:
     - `current_limit`
     - `current`
+    - `state`
     - `voltage`
     - `charging_time_left`
     - `time`
@@ -57,6 +58,7 @@ func main() {
 	type signal struct {
 		Current_limit      float64 `msgpack:"current_limit"`
 		Current            float64 `msgpack:"current"`
+		State              bool    `msgpack:"state"`
 		Voltage            float64 `msgpack:"voltage"`
 		Charging_time_left int64   `msgpack:"charging_time_left"`
 		Time               int64   `msgpack:"time"`
