@@ -15,6 +15,7 @@
 | current | double | Active charge current | A | true |
 | current_limit | double | Maximum allowed current for charging | A | true |
 | state | boolean | Charge state of the EVSE | on/off | true |
+| time | integer | nanoseconds since the Unix epoch | ns | true |
 | voltage | double | Active charge voltage | V | true |
 
 
@@ -24,6 +25,7 @@
     - `current`
     - `voltage`
     - `charging_time_left`
+    - `time`
     
 
 
@@ -57,6 +59,7 @@ func main() {
 		Current            float64 `msgpack:"current"`
 		Voltage            float64 `msgpack:"voltage"`
 		Charging_time_left int64   `msgpack:"charging_time_left"`
+		Time               int64   `msgpack:"time"`
 	}
 	c, err := client.Subscribe(&bw2.SubscribeParams{
 		URI: base_uri + "/signal/info",
