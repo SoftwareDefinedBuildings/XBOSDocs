@@ -153,17 +153,22 @@ archiver = DataClient(c,archivers=["ucberkeley"])
 
 # query for CIEE occupancy sensors
 q = """
-SELECT ?x ?uuid WHERE {
-    ?x rdf:type/rdfs:subClassOf* brick:Occupancy_Sensor .
-    ?x bf:uuid ?uuid .
+SELECT ?sensor ?uuid WHERE {
+    ?sensor rdf:type/rdfs:subClassOf* brick:Occupancy_Sensor .
+    ?sensor bf:uuid ?uuid .
 };
 """
-uuids = [res["?uuid"] for res in hod.do_query(q)]
+res = hod.do_query(q)
+uuids = [r["?uuid"] for r in res]
+sensors = [r["?sensor"] for r in res]
+lookup = dict(zip(uuids, sensors))
+for uuid, sensorname in lookup.items():
+    print uuid, '=>', sensorname
 start = '"2017-08-21 00:00:00 PST"'
 end = '"2017-07-20 00:00:00 PST"'
 # get 15min interval data
 dfs = make_dataframe(archiver.window_uuids(uuids, end, start, '15min', timeout=120))
-for uuid, df in dfs:
+for uuid, df in dfs.items():
     print uuid
     print df.describe()
 ```
