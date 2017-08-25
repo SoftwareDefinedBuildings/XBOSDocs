@@ -136,6 +136,38 @@ print hc.do_query(q)
 #    u'?x': u'hamilton_0022_air_temp'}]
 ```
 
+### Archived Data with Brick Query
+
+```python
+from xbos import get_client
+from xbos.services.pundat import DataClient, timestamp, make_dataframe
+from xbos.services.hod import HodClientHTTP
+from xbos.devices.thermostat import Thermostat
+
+# get a bosswave client
+c = get_client() # defaults to $BW2_AGENT, $BW2_DEFAULT_ENTITY
+# get a HodDB client
+hod = HodClientHTTP("http://ciee.cal-sdb.org")
+# get an archiver client
+archiver = DataClient(c,archivers=["ucberkeley"])
+
+# query for CIEE occupancy sensors
+q = """
+SELECT ?x ?uuid WHERE {
+    ?x rdf:type/rdfs:subClassOf* brick:Occupancy_Sensor .
+    ?x bf:uuid ?uuid .
+};
+"""
+uuids = [res["?uuid"] for res in hod.do_query(q)]
+start = '"2017-08-21 00:00:00 PST"'
+end = '"2017-07-20 00:00:00 PST"'
+# get 15min interval data
+dfs = make_dataframe(archiver.window_uuids(uuids, end, start, '15min', timeout=120))
+for uuid, df in dfs:
+    print uuid
+    print df.describe()
+```
+
 ### All Together
 
 ```python
