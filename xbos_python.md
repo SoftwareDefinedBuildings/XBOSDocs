@@ -140,7 +140,7 @@ print hc.do_query(q)
 
 ```python
 from xbos import get_client
-from xbos.services.pundat import DataClient, timestamp, make_dataframe
+from xbos.services.pundat import DataClient, timestamp, make_dataframe, merge_dfs
 from xbos.services.hod import HodClientHTTP
 from xbos.devices.thermostat import Thermostat
 
@@ -168,9 +168,9 @@ start = '"2017-08-21 00:00:00 PST"'
 end = '"2017-07-20 00:00:00 PST"'
 # get 15min interval data
 dfs = make_dataframe(archiver.window_uuids(uuids, end, start, '15min', timeout=120))
-for uuid, df in dfs.items():
-    print uuid
-    print df.describe()
+# resamples the merged dataframes to 10min mean buckets
+merged = merge_dfs(dfs, resample='10T', do_mean=True)
+merged.to_csv("data.csv")
 ```
 
 ### All Together
