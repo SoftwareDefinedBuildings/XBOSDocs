@@ -17,6 +17,7 @@
     * [PV Meter](driver_xbos_pv_meter.md)
     * [EVSE](driver_xbos_evse.md)
     * [Temperature Sensor](driver_xbos_temperature_sensor.md)
+    * [Weather Statio](driver_xbos_weather_station.md)
     * [Window](driver_xbos_window.md)
 * [Example: Thermostat Driver Interface](example-thermostat-driver-interface.md)
 
