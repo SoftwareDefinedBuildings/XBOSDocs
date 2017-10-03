@@ -6,6 +6,7 @@
 
 * [Overview](install_overview.md)
 * [Local Server](local_install.md)
+* [Device Drivers](device_drivers.md)
 * [Remote Services](core_services.md)
 
 ## Bindings
