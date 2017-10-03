@@ -1,5 +1,9 @@
 # Local Server Installation
 
+- [Config File](https://raw.githubusercontent.com/SoftwareDefinedBuildings/XBOS/master/commissioning/config.sh)
+- [Installation Script](https://raw.githubusercontent.com/SoftwareDefinedBuildings/XBOS/master/commissioning/install.sh)
+- **Note: currently the installation script assumes a recent Ubuntu installation**
+
 The local server installation script handles the following:
 
 - BOSSWAVE agent installation
@@ -11,9 +15,11 @@ The local server installation script handles the following:
     - wdtop
     - sdmon
 
+
+The configuration file `config.sh` must be filled out before the installation script is run.
 The local server installation script comes with a configuration file, which determines which steps run as well as establishes configuration parameters.
 
-These configuration parameters are
+These configuration parameters are below:
 
 ```bash
 ######################
