@@ -2,6 +2,12 @@
 
 * [XBOS Overview](README.md)
 
+## Installation
+
+* [Overview](install_overview.md)
+* [Local Server](local_install.md)
+* [Remote Services](core_services.md)
+
 ## Bindings
 
 * [Python](xbos_python.md)
