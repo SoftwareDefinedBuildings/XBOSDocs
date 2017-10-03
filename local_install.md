@@ -19,13 +19,16 @@ The local server installation script handles the following:
 The configuration file `config.sh` must be filled out before the installation script is run.
 The local server installation script comes with a configuration file, which determines which steps run as well as establishes configuration parameters.
 
-These configuration parameters are below:
+The segments of installation are explained below, and are marked as for a "personal install" (a computer not used as an XBOS server), a "server install", or both.
+
+### BOSSWAVE Install
+
+* for personal install
+* for server install
+
+You will configure the following in `config.sh`:
 
 ```bash
-######################
-### CONFIGURE BOSSWAVE
-######################
-
 # name + email address to be attached to configured BOSSWAVE objects
 # if this contains spaces, make sure to use quotes
 BW2_DEFAULT_CONTACT=
@@ -42,11 +45,54 @@ BW2_DEFAULT_BANKROLL=
 GIT_USER=
 # email to use for git commits to config repo
 GIT_EMAIL=
+```
 
-#######################
-### CONFIGURE NAMESPACE
-#######################
+The XBOS installer runs the standard `curl get.bw2.io/agent | bash` installation.
 
+**Interactive note**: if your default entity does not have any Ether funds, the installer will pause and ask if you want to continue. The installer will output the BOSSWAVE address representing your public "bank account", so it is simple to ask someone for funds.
+
+### Tool installs
+
+* for personal install
+* for server install
+
+Several supplementary tools are helpful for interacting with an XBOS deployment.
+
+The XBOS installer can:
+
+- install the Go programming language (1.9)
+    - configure:
+        ```bash
+        INSTALL_GO=true
+        ```
+
+- install the `spawnctl` tool for administrating and monitoring spawnpoint deployments:
+    - configure:
+        ```bash
+        # Requires Go
+        INSTALL_SPAWNPOINT_CLIENT=true
+        ```
+    - [documentation](https://github.com/SoftwareDefinedBuildings/spawnpoint#interacting-with-spawnpoints-using-spawnctl)
+
+- install the `pundat` tool for configuring the data archiver
+    - configure:
+        ```bash
+        # Requires Go
+        INSTALL_PUNDAT_CLIENT=true
+        ```
+    - [documentation](https://github.com/gtfierro/PunDat/wiki)
+
+### Namespace Configuration
+
+* for server install
+
+In XBOS, we strucutre the set of resources for a deployment site around a central namespace.
+A namespace is defined by a public/private key pair (VK/SK in BOSSWAVE parlance), and is referred to by an alias (a human-readable immutable alias of the public key).
+Additionally, a namespace must have a contract with a server for that server to be authorized to carry traffic for the namespace; this is how we configure a broker for the namespace.
+
+The XBOS installer requires the following configuration
+
+```bash
 # set to false to ignore configuration for namespace
 CONFIGURE_NAMESPACE=true
 
@@ -59,13 +105,20 @@ NAMESPACE_ENTITY=
 NAMESPACE_ALIAS=
 
 # the VK of the designated router (DR) that  will carry traffic for this namespace
-# it is helpful to have the DR ready to make an offer
+# it is helpful to have the DR ready to make an offer. This will likely be given to you.
 DESIGNATED_ROUTER_VK=
+```
 
-########################
-### CONFIGURE SPAWNPOINT
-########################
+### Spawnpoint Configuration
 
+* for server install
+
+The XBOS installer invokes the [automated spawnpoint installer](https://github.com/SoftwareDefinedBuildings/spawnpoint/tree/master/installer).
+This will configure an entity and spawnd service for a server.
+
+The XBOS installer requires the following configuration:
+
+```bash
 # if true, install spawnd server
 INSTALL_SPAWNPOINT_SERVER=true
 # entity to run the spawnd daemon.
@@ -74,30 +127,24 @@ SPAWND_ENTITY=
 # Spawnpoint system config
 SPAWND_MEM_ALLOC="4G"
 SPAWND_CPU_SHARES=2048
+```
 
-#######################
-### CONFIGURE WATCHDOGS
-#######################
+### Watchdog Configuration
 
+* for server install
+
+[Watchdogs](https://github.com/immesys/wd) are a convenient way to track the health of deployed servers and services.
+The provided watchdogs monitor CPU, memory, disk space and uptime of core local services such as the BOSSWAVE agent and spawnd daemon.
+
+The XBOS installer requires the following configuration:
+
+```bash
 # if true, install watchdog services (requires systemd)
 INSTALL_WATCHDOGS=true
-# need to provide a WD_TOKEN in order to configure watchdog services
+# need to provide a WD_TOKEN in order to configure watchdog services.
+# This will be given to you
 WD_TOKEN=
-# need to provide the prefix for watchdog names
+# need to provide the prefix for watchdog names.
+# This will be given to you
 WD_PREFIX=
-
-#######################
-### ADDITIONAL INSTALLS
-#######################
-
-# if true, install Go 1.9
-INSTALL_GO=true
-
-# if true, install spawnctl
-# Requires Go
-INSTALL_SPAWNPOINT_CLIENT=true
-
-# if true, isntall pundat archiver installation tool
-# Requires Go
-INSTALL_PUNDAT_CLIENT=true
 ```
