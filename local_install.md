@@ -1,9 +1,5 @@
 # Local Server Installation
 
-- [Config File](https://raw.githubusercontent.com/SoftwareDefinedBuildings/XBOS/master/commissioning/config.sh)
-- [Installation Script](https://raw.githubusercontent.com/SoftwareDefinedBuildings/XBOS/master/commissioning/install.sh)
-- **Note: currently the installation script assumes a recent Ubuntu installation**
-
 The local server installation script handles the following:
 
 - BOSSWAVE agent installation
@@ -15,12 +11,30 @@ The local server installation script handles the following:
     - wdtop
     - sdmon
 
-<h2><a href="#configuration">Configuration</a></h2>
+## Ubuntu Install
+
+For the XBOS server, we recommend installing a recent version of [Ubuntu Server](https://www.ubuntu.com/download/server). You can use a standard installation procedure here. We use the following defaults (when prompted during the installation):
+
+- Partitioning: use guided partition on the full disk (no need to configure LVM)
+- Updates: No automatic updates
+- Software Selection: add OpenSSH server in addition to standard system utilities
+
+## Configuration
 
 The configuration file `config.sh` must be filled out before the installation script is run.
 The local server installation script comes with a configuration file, which determines which steps run as well as establishes configuration parameters.
 
 The segments of installation are explained below, and are marked as for a "personal install" (a computer not used as an XBOS server), a "server install", or both.
+
+
+Download the template [config file](https://raw.githubusercontent.com/SoftwareDefinedBuildings/XBOS/master/commissioning/config.sh)
+
+
+```bash
+curl -O https://raw.githubusercontent.com/SoftwareDefinedBuildings/XBOS/master/commissioning/config.sh
+```
+
+Edit this file according to the below specifications.
 
 ### BOSSWAVE Install
 
@@ -152,4 +166,12 @@ WD_PREFIX=
 
 ## Installation
 
+Use the following [installation script](https://raw.githubusercontent.com/SoftwareDefinedBuildings/XBOS/master/commissioning/install.sh)
 
+```bash
+curl -O https://raw.githubusercontent.com/SoftwareDefinedBuildings/XBOS/master/commissioning/install.sh
+byobu new-session
+./install.sh
+```
+
+Step-by-step instructions coming soon!

@@ -6,6 +6,7 @@
 
 * [Overview](install_overview.md)
 * [Local Server](local_install.md)
+    * [Ubuntu Install](local_install.md#ubuntu-install)
     * [Configuration](local_install.md#configuration)
     * [Installation](local_install.md#installation)
 * [Device Drivers](device_drivers.md)
