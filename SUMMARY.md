@@ -6,6 +6,8 @@
 
 * [Overview](install_overview.md)
 * [Local Server](local_install.md)
+    * [Configuration](local_install.md#configuration)
+    * [Installation](local_install.md#installation)
 * [Device Drivers](device_drivers.md)
 * [Remote Services](core_services.md)
 

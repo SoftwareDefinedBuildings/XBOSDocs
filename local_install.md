@@ -15,6 +15,7 @@ The local server installation script handles the following:
     - wdtop
     - sdmon
 
+<h2><a href="#configuration">Configuration</a></h2>
 
 The configuration file `config.sh` must be filled out before the installation script is run.
 The local server installation script comes with a configuration file, which determines which steps run as well as establishes configuration parameters.
@@ -148,3 +149,7 @@ WD_TOKEN=
 # This will be given to you
 WD_PREFIX=
 ```
+
+## Installation
+
+
