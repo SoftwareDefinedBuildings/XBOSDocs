@@ -9,6 +9,8 @@
     * [Ubuntu Install](local_install.md#ubuntu-install)
     * [Configuration](local_install.md#configuration)
     * [Installation](local_install.md#installation)
+* Core Services
+    * [Pundat](pundat.md)
 * [Device Drivers](device_drivers.md)
 * [Remote Services](core_services.md)
 
