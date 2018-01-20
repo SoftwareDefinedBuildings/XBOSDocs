@@ -106,6 +106,7 @@ Upon startup, Pundat is configured to listen to a set of BOSSWAVE namespaces. On
 | Name | **yes** | `string` | A human-readable name for this stream that serves to disambiguate it from other streams that might be produced from the same URI |
 | PO  | **yes** | `string` | Which type of payload the archiver should extract from received messages. If multiple payloads with the PO in the same message, the archiver will operate on each of them |
 | Value | **yes** | `string` | The [`OB`](https://github.com/gtfierro/ob) expression used to extract the *numerical* value from the published message. This will be interpreted as a 64-bit float. |
+| Unit | **yes** | `string` | The engineering units that characterize this stream of data |
 | Time | no | `string` | The [`OB`](https://github.com/gtfierro/ob) expression used to extract the time to be associated with the value. If provided, the archiver uses the `TimeParse` field to determine how to parse the extracted value. If this field is *not* provided, then the archiver just associates the server's current timestamp with the received record |
 
 There are two additional (optional) fields. `URIMatch` is a regular expression executed against each unique URI that pundat sees when subscribing to `ArchiveURI`. Capture groups are supported. `URIReplace`  is a rewrite of the URI that gets used as the stream's name when it is inserted into BTrDB. By default, Pundat will use the full URI of the subscription, which can get unwieldy.
@@ -216,6 +217,8 @@ To remove requests, use `rmreq` instead of `addreq` when specifying the archive 
 
 ## Using
 
+### CLI tool
+
 The Pundat commandline tool has a couple utilities you may find helpful for general usage
 
 * `pundat scan`: this locates the base URI of an archiver on a given namespace. This is helpful for liveness checks
@@ -237,3 +240,9 @@ The Pundat commandline tool has a couple utilities you may find helpful for gene
 	Key dgKG0DKVUw40PmpY2UqpBDFWdvKD5-KNyXQun2jQkNs= has access to archiver at ucberkeley
 	```
 * `pundat range` checks which ranges of data a BOSSWAVE entity can see
+
+### Query Language
+
+**Note: this is a legacy interface. For data access + metadata, we recommend using HodDB and MDAL**
+
+Documentation available [on the Pundat wiki](https://github.com/gtfierro/pundat/wiki/Query-Language)
