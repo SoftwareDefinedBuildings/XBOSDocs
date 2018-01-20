@@ -56,6 +56,7 @@ The other environment variables Pundat expects are:
 
 ## Installation
 
+Pundat is shipped as a Docker container image `gtfierro/pundat:latest` (most recent version is `gtfierro/pundat:0.3.4`). You can build this container yourself by running `make container` in a cloned copy of the [Pundat repository](https://github.com/gtfierro/PunDat).
 
 ### Run with Kubernetes
 
@@ -86,7 +87,7 @@ docker run -d --name pundat -e BTRDB_SERVER=<btrdb ip>:4410 \
                             gtfierro/pundat:latest
 ```
 
-## Archive Requests
+## Archiving
 
 A **stream** is the unit of archival and data access. A stream consists of:
 * a timeseries (a single progression of `<time, value>` pairs)
@@ -212,3 +213,27 @@ RETRIEVING from scratch.ns/bms/*/!meta/archiverequest
 To remove requests, use `rmreq` instead of `addreq` when specifying the archive YAML file, or just use the `nukereq` command on a URI to remove all ARs on that URI.
 
 **NOTE: currently the archiver only respects removal of ARs on restart**
+
+## Using
+
+The Pundat commandline tool has a couple utilities you may find helpful for general usage
+
+* `pundat scan`: this locates the base URI of an archiver on a given namespace. This is helpful for liveness checks
+
+    ```
+	$ pundat scan ucberkeley
+	Found Archiver at:
+		 URI        -> ucberkeley
+		 Last Alive -> 2018-01-20 18:27:16 +0000 UTC (9.829507254s ago)
+	```
+
+* `pundat check` and `pundat grant` verify and grant permission for using the archiver to a BOSSWAVE entity
+	```
+	$ pundat check -k gabe -u ucberkeley
+	Found archiver at: ucberkeley (alive 8.508192267s ago)
+	Hash: wTx2G1LVrAo_HVj6jVIFWY7Bl6Q7ge9bDft0Dt5w3UQ=  Permissions: C*    URI: nvrnSE4pJe4ZMO3WQdb-EPi5iwuzmTVUpk6XNNRGYsc=/*/s.giles/!meta/lastalive
+	Hash: 908QbAUPnu5rm9h_3L65EQtPOxPVPvKibt2KpZxG_CQ=  Permissions: P     URI: nvrnSE4pJe4ZMO3WQdb-EPi5iwuzmTVUpk6XNNRGYsc=/s.giles/_/i.archiver/slot/query
+	Hash: _s9XHmbnqk8RrEORpG84jW2qnAdc-6iP15esIP4rymI=  Permissions: C     URI: nvrnSE4pJe4ZMO3WQdb-EPi5iwuzmTVUpk6XNNRGYsc=/s.giles/_/i.archiver/signal/T8wqsqNgD_NmBeDp1n7Kx1b5yfXDWo8Oqb3y0AQ8-y0,queries
+	Key dgKG0DKVUw40PmpY2UqpBDFWdvKD5-KNyXQun2jQkNs= has access to archiver at ucberkeley
+	```
+* `pundat range` checks which ranges of data a BOSSWAVE entity can see

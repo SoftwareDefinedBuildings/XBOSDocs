@@ -8,8 +8,13 @@
     * [Ubuntu Install](local_install.md#ubuntu-install)
     * [Configuration](local_install.md#configuration)
     * [Installation](local_install.md#installation)
+    * [Installation](local_install.md#installation)
 * Core Services
     * [Pundat](pundat.md)
+        * [Configuration](pundat.md#configuration)
+        * [Installation](pundat.md#installation)
+        * [Archiving](pundat.md#archiving)
+        * [Using](pundat.md#using)
 * [Device Drivers](device_drivers.md)
 
 ## Bindings
