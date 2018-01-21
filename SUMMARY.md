@@ -15,6 +15,10 @@
         * [Installation](pundat.md#installation)
         * [Archiving](pundat.md#archiving)
         * [Using](pundat.md#using)
+    * [MDAL](mdal.md)
+        * [Configuration](mdal.md#configuration)
+        * [Installation](mdal.md#installation)
+        * [Using](mdal.md#using)
 * [Device Drivers](device_drivers.md)
 
 ## Bindings

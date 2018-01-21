@@ -13,20 +13,32 @@ Create the entity and place it in a known location that you don't mind being mou
 
 The easiest way to do this is just to grant the following DoT
 
-```
-bw2 mkdot -f $PRIVILEGED_ENTITY -t $PUNDAT_ENTITY -u $NAMESPACE/* -x C* -m "Pundat access to namespace"
+```bash
+bw2 mkdot -f $PRIVILEGED_ENTITY         \
+          -t $PUNDAT_ENTITY             \
+          -u $NAMESPACE/*               \
+          -x C*                         \
+          -m "Pundat access to namespace"
 ```
 
 If you want more fine-grained control, then you can grant the following DoT to (`$PUNDAT_ENTITY`) to have it discover archive requests
 
-```
-bw2 mkdot -f $PRIVILEGED_ENTITY -t $PUNDAT_ENTITY -u '$NAMESPACE/*/!meta/archiverequest' -x 'C*' -m "Pundat discover archive requests"
+```bash
+bw2 mkdot -f $PRIVILEGED_ENTITY                     \
+          -t $PUNDAT_ENTITY                         \
+          -u "$NAMESPACE/*/!meta/archiverequest"    \
+          -x 'C*'                                   \
+          -m "Pundat discover archive requests"
 ```
 
 and then grant a direct subscription DoT for each individual stream
 
-```
-bw2 mkdot -f $PRIVILEGED_ENTITY -t $PUNDAT_ENTITY -u '$NAMESPACE/sensors/s.sensor/123/i.xbos.temperature_sensor/signal/info' -m 'archiver access to sensor stream'
+```bash
+bw2 mkdot -f $PRIVILEGED_ENTITY             \
+          -t $PUNDAT_ENTITY                 \
+          -u "$NAMESPACE/sensors/s.sensor/123/i.xbos.temperature_sensor/signal/info"  \
+          -x 'C'                            \
+          -m 'archiver access to sensor stream'
 ```
 
 Keep in mind this is very tedious and error-prone.
@@ -35,19 +47,23 @@ Keep in mind this is very tedious and error-prone.
 
 `$PUNDAT_ENTITY` also needs permission to operate on a namespace (`$GILES_BW_NAMESPACE`). The DoT to grant is
 
-```
-bw2 mkdot -f $PRIVILEGED_ENTITY -t $PUNDAT_ENTITY -u $NAMESPACE/s.giles/* -x PC*
+```bash
+bw2 mkdot -f $PRIVILEGED_ENTITY             \
+          -t $PUNDAT_ENTITY                 \
+          -u $NAMESPACE/s.giles/*           \
+          -x PC*                            \
+          -m 'Pundat archiver endpoint'
 ```
 
 ### Environment Variables
 
-The other environment variables Pundat expects are:
+The environment variables Pundat expects are:
 - `BTRDB_SERVER`: this is the local address and port of your BTrDB endpoint
 - `MONGO_SERVER`: this is the local address and port of a MongoDB server (does not need persistent storage)
 - `GILES_BW_ENTITY`: this is the container-local path to the entity Pundat should use
 - `GILES_BW_NAMESPACE`: this is the namespace Pundat operates on
 - `GILES_BW_ADDRESS`: this is the address of the BOSSWAVE agent Pundat should use. If Pundat is running in a Docker container (either through Kubernetes or otherwise), then we recommend configuring the BOSSWAVE agent to listen on the default Docker interface. In the BOSSWAVE config file `/etc/bw2/bw2.ini`, make sure you have the following lines:
-    ```
+    ```ini
     [oob]
     ListenOn=172.17.0.1:28589
     ```
