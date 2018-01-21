@@ -8,7 +8,8 @@
     * [Ubuntu Install](local_install.md#ubuntu-install)
     * [Configuration](local_install.md#configuration)
     * [Installation](local_install.md#installation)
-* [Core Services](core_services.md)
+* Core Services
+	* [BTrDB](btrdb.md)
     * [Pundat](pundat.md)
         * [Configuration](pundat.md#configuration)
         * [Installation](pundat.md#installation)
