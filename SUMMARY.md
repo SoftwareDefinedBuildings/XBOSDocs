@@ -8,8 +8,7 @@
     * [Ubuntu Install](local_install.md#ubuntu-install)
     * [Configuration](local_install.md#configuration)
     * [Installation](local_install.md#installation)
-    * [Installation](local_install.md#installation)
-* Core Services
+* [Core Services](core_services.md)
     * [Pundat](pundat.md)
         * [Configuration](pundat.md#configuration)
         * [Installation](pundat.md#installation)
@@ -19,6 +18,10 @@
         * [Configuration](mdal.md#configuration)
         * [Installation](mdal.md#installation)
         * [Using](mdal.md#using)
+    * [HodDB](hoddb.md)
+        * [Configuration](hoddb.md#configuration)
+        * [Installation](hoddb.md#installation)
+        * [Using + Access Control](hoddb.md#using)
 * [Device Drivers](device_drivers.md)
 
 ## Bindings

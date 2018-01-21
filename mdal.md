@@ -72,7 +72,7 @@ You can build this container yourself by running `make container` in a cloned co
 
 ### Run with Kubernetes
 
-If you are running Kubernetes on your node/cluster, then you can easily install Pundat by using its Kubernetes file.
+If you are running Kubernetes on your node/cluster, then you can easily install MDAL by using its Kubernetes file.
 
 Keep in mind that MDAL currently requires a volume mount where the `mdal.yaml` configuration file is stored.
 ```yaml
