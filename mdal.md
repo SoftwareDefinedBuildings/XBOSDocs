@@ -113,7 +113,24 @@ Don't forget to forward the HTTP port if that interface is enabled
 
 ## Using
 
-Requests look like:
+### Permissions
+
+`mdal check` and `mdal grant` verify and grant permission to use the MDAL service at a given URI to a BOSSWAVE entity
+
+```
+$ mdal check -k T8wqsqNgD_NmBeDp1n7Kx1b5yfXDWo8Oqb3y0AQ8-y0= -u xbos/mdal
+MDAL: Commit: 8284e13 Release: 0.0.3
+T8wqsqNgD_NmBeDp1n7Kx1b5yfXDWo8Oqb3y0AQ8-y0=
+Hash: 8z50T3ZQCMvpRH059d-DeZmCnuH9QKOkGsRU-Zz4rdc=  Permissions: C*    URI: 06DZ14k6dhRognGUoSHofD8oS8CUaWwq4tH-FPW13UU=/mdal/*/s.mdal/!meta/lastalive
+Hash: 4e0ZrYpg2B-7oy_KGpxjxdnYPspKSFb_pr4yccJ-TdQ=  Permissions: P     URI: 06DZ14k6dhRognGUoSHofD8oS8CUaWwq4tH-FPW13UU=/mdal/s.mdal/_/i.mdal/slot/query
+Hash: dKCtE_OY0QBm3Zq8eKxauaUy7GN1maeiMHL9Zb5eJ1E=  Permissions: C     URI: 06DZ14k6dhRognGUoSHofD8oS8CUaWwq4tH-FPW13UU=/mdal/s.mdal/_/i.mdal/signal/T8wqsqNgD_NmBeDp1n7Kx1b5yfXDWo8Oqb3y0AQ8-y0
+Key T8wqsqNgD_NmBeDp1n7Kx1b5yfXDWo8Oqb3y0AQ8-y0= has access to archiver at xbos/mdal
+
+```
+
+### API
+
+Requests are msgpack-serialized and look like:
 
 ```python
 query = {
