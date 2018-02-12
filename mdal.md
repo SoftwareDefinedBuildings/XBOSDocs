@@ -174,7 +174,7 @@ Supported unit conversions (case insensitive):
 
 ```python
 from xbos.services import mdal
-client = mdal.BOSSWAVEMDALClient("scratch.ns")
+client = mdal.MDALClient("xbos/mdal")
 query = {
     "Composition": ["temp"],
     "Selectors": [mdal.MEAN],
@@ -185,13 +185,14 @@ query = {
         },
     ],
     "Time": {
-        "T0": "2017-07-21 00:00:00",
-        "T1": "2017-08-21 00:00:00",
+        "T0": "2017-07-21 00:00:00 PST",
+        "T1": "2017-08-21 00:00:00 PST",
         "WindowSize": '30m',
         "Aligned": True,
     },
 }
 resp = client.do_query(query,timeout=300)
+print resp.get('error') # see if there's an error
 df = resp['df']
 print df.describe()
 ```
