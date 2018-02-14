@@ -28,11 +28,7 @@ An instance of XBOS is composed of a set of logically and physically distributed
 
 The above services communicate with each other using the BOSSWAVE message bus, which also provides and enforces authentication and authorization.
 
-![](/assets/xbos_arch_generic.png)
-
-There is some flexibility in how these services can be placed on available computing resources, but the most common division is that of *cloud* and *edge*:
-
-![](/assets/XBOSservices.png)
+![](assets/xbos_arch_generic.png)
 
 ## Main Components
 
@@ -137,8 +133,23 @@ Docs:
 
 ## Applications
 
+XBOS makes it easy to develop data-oriented applications that leverage the hardware abstraction layer and core services. Some examples of applications written for XBOS are:
+
+- **Building-wide HVAC scheduler**: this application queries a Brick model to discover all thermostats in a building and enacts the same schedule over all thermostats, independent of the make/model/API of the thermostat
+- **Occupancy-driven HVAC + Lighting control**: this application trains an occupancy model for each HVAC zone (using Brick queries to discover the occupancy sensors for each zone), and executes a learned HVAC/Lighting schedule that adheres to the projected occupancy envelope for each zone
+- **RTU energy estimator**: this application estimates the heating and cooling energy consumption for rooftop units (RTUs) by correlating thermostat state with full building demand. The application looks for transitions in thermostat state (e.g. from 'off' to 'cool'), identifies corresponding jumps/drops in building demand within a small window, and constructs a simple statistical model for each RTU
+- **Site-agnostic energy consumption model**: this application uses a basic "similarity-based" model to predict energy usage over the current 24 hour period. This model can also leverage the RTU energy estimator (and a related model for lighting) to estimate only the "base" consumption of a building (without HVAC or lighting loads)
+- **Site-agnostic thermal model**: this application trains a basic least-squares model to predict temperature in a room based on the current and historical temperatures of adjacent rooms and HVAC state. The training data for the model is automatically assembled using Brick queries.
+- **Demand response controller**: this application listens for an OpenADR signal and then overrides thermostat and lighting controls to reduce consumption by widening deadbands and dimming lights. This can be augmented with thermal models to properly implement pre-cooling
+- **Missing data detector**: this application periodically queries the data store for the past *N* minutes of data of each stream; if the stream is missing data, then the application uses Amazon's Simple Notification Service to email/text an administrator
+- **Site Management Dashboard**: this application presents a simple management and scheduling interface for a site. Users can configure thermostat and lighting schedules, check current and forecasted energy consumption, and specify control policies for demand response events.
 
 ## Typical Deployments
 
+There is some flexibility in how these services can be placed on available computing resources, but the most common division is that of *cloud* and *edge/local*:
+
+![](assets/XBOSservices.png)
 
 ## Features and capabilities
+
+What does XBOS do that other systems don't?
