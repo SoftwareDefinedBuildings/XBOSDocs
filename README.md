@@ -150,6 +150,8 @@ There is some flexibility in how these services can be placed on available compu
 
 ![](assets/XBOSservices.png)
 
-## Features and capabilities
+## Why XBOS?
 
-What does XBOS do that other systems don't?
+- XBOS provides fine-grained management of permissions. These permissions are auditable, revocable, can be delegated and are created and enforced without relying on any centralized authority. Delegated links can be replaced without re-granting the full chain of permissions. These features make XBOS suitable for handling the naturally complex administrative structures typical of the built environment.
+- All data-oriented processes in XBOS use Brick metadata to bootstrap/configure themselves. This enables **portability**: XBOS applications should be largely agnostic to the building they execute against. This simplifies and reduces development effort spent in porting analytics, controllers, schedules, alarms, etc from building to building. Additionally, applications can use the Brick model to find out if the building has the required features/services for the application's operation.
+- XBOS is **extensible**: the architecture gracefully supports the introduction of new types of services.
