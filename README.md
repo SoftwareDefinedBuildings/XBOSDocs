@@ -2,7 +2,7 @@
 
 
 ## What is XBOS
-XBOS (e**X**tensible **B**uilding **O**perating **S**ystem) is an open-source large-scale distributed operating system for smart buildings. XBOS provides secure:
+XBOS (e**X**tensible **B**uilding **O**perating **S**ystem) is an open-source large-scale distributed operating system for smart buildings. XBOS provides **secure**:
 - Real-time monitoring of building sensors
 - Control of building actuators
 - Collection, modeling, and analytics of building data
@@ -10,19 +10,16 @@ XBOS (e**X**tensible **B**uilding **O**perating **S**ystem) is an open-source la
 
 
 ## XBOS Overarching Goal
-
 XBOS aims to standardize a modular design that enables Software-Defined access to Internet-connected programmable sensors and controllers. This can be achieved by ... TODO!
 
 
 ## Why XBOS?
-
 - XBOS provides fine-grained management of permissions for access to building resources, data, and controllers. These permissions are auditable, revocable, can be delegated, and are created and enforced without relying on any centralized authority. Delegated links can be replaced without re-granting the full chain of permissions. These features make XBOS suitable for handling the naturally complex administrative structures typical in building environments.
 - All data-oriented processes in XBOS use metadata to bootstrap/configure themselves. This enables **portability** -- XBOS applications are largely agnostic to the underlying building infrastructure. This simplifies and reduces the development efforts spent in porting analytics, controllers, schedules, alarms, etc. from one building to another. Additionally, applications can use an XBOS building model to find out if a building has the required features/services for the application's operation.
 - XBOS is **extensible** -- the architecture gracefully supports the introduction of new types of services.
 
 
 ## XBOS Features & Capabilities
-
 - A common abstraction for IoT sensors and actuators, smart devices, building management systems, etc.
 - Long-term secure storage of building telemetry
 - Rich standardized metadata describing the building environment and its components
@@ -34,7 +31,6 @@ XBOS aims to standardize a modular design that enables Software-Defined access t
 
 
 ## XBOS Architecture
-
 XBOS is assembled from a family of open-source technologies, which can be found via the [XBOS Github](https://github.com/SoftwareDefinedBuildings/XBOS). The overall architecture of XBOS and a brief description of these technologies are presented below.
 
 ![](assets/xbos_arch_generic.png)
@@ -51,7 +47,6 @@ XBOS is composed of a set of logically and physically distributed services, whic
 
 
 ## Typical Deployments
-
 There is some flexibility in how these services can be placed on available computing resources, but the most common division is that of *cloud* and *edge/local*:
 
 ![](assets/XBOSservices.png)
@@ -66,7 +61,6 @@ Security and authentication was not an afterthought but rather a core design req
 
 
 ## XBOS Main Components
-
 This section presents more information and references to all of the XBOS technologies presented in the architecture section. Please refer to the Getting Started Section for which components might make sense to you as a starting point once you are familiar with BOSSWAVE.
 
 ### Syndication
