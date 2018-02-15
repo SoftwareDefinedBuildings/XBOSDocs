@@ -2,25 +2,23 @@
 
 
 ## What is XBOS
-XBOS (e**X**tensible **B**uilding **O**perating **S**ystem) is an open-source large-scale distributed operating system for smart buildings.
-
-XBOS provides secure:
+XBOS (e**X**tensible **B**uilding **O**perating **S**ystem) is an open-source large-scale distributed operating system for smart buildings. XBOS provides secure:
 - Real-time monitoring of building sensors
 - Control of building actuators
 - Collection, modeling, and analytics of building data
 - Advanced management and coordination of building systems/subsystems
 
 
-## XBOS Overarching Goals
+## XBOS Overarching Goal
 
-TODO! XBOS aims to standardize a modular design that enables Software-Defined access to Internet-connected, programmable sensors and controllers.
+XBOS aims to standardize a modular design that enables Software-Defined access to Internet-connected programmable sensors and controllers. This can be achieved by ... TODO!
 
 
 ## Why XBOS?
 
 - XBOS provides fine-grained management of permissions for access to building resources, data, and controllers. These permissions are auditable, revocable, can be delegated, and are created and enforced without relying on any centralized authority. Delegated links can be replaced without re-granting the full chain of permissions. These features make XBOS suitable for handling the naturally complex administrative structures typical in building environments.
 - All data-oriented processes in XBOS use metadata to bootstrap/configure themselves. This enables **portability** -- XBOS applications are largely agnostic to the underlying building infrastructure. This simplifies and reduces the development efforts spent in porting analytics, controllers, schedules, alarms, etc. from one building to another. Additionally, applications can use an XBOS building model to find out if a building has the required features/services for the application's operation.
-- XBOS is **extensible**: the architecture gracefully supports the introduction of new types of services.
+- XBOS is **extensible** -- the architecture gracefully supports the introduction of new types of services.
 
 
 ## XBOS Features & Capabilities
@@ -37,7 +35,7 @@ TODO! XBOS aims to standardize a modular design that enables Software-Defined ac
 
 ## XBOS Architecture
 
-XBOS is assembled from a family of open-source technologies, which can be found via the [XBOS Github](https://github.com/SoftwareDefinedBuildings/XBOS). The overall architecture of XBOS and a brief description of these technologies is presented below.
+XBOS is assembled from a family of open-source technologies, which can be found via the [XBOS Github](https://github.com/SoftwareDefinedBuildings/XBOS). The overall architecture of XBOS and a brief description of these technologies are presented below.
 
 ![](assets/xbos_arch_generic.png)
 
