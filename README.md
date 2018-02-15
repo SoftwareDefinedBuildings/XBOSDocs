@@ -3,7 +3,7 @@
 ## What is XBOS
 
 
-XBOS (e**X**tensible **B**uilding **O**perating **S**ystem) is a distributed operating system providing large-scale monitoring, control, analysis and management of buildings. It provides:
+XBOS (e**X**tensible **B**uilding **O**perating **S**ystem) is an open source distributed operating system providing large-scale monitoring, control, analysis and management of buildings. It provides:
 
 - a common abstraction for smart devices, building management systems and other read/write resources
 - long-term storage of building telemetry
