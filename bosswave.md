@@ -2,20 +2,14 @@
 
 This guide is adapted from [https://github.com/immesys/bw2#getting-started](https://github.com/immesys/bw2#getting-started)
 
-Outline:
-- granting permissions
-	+ bw2 guide from readme
-	+ URIs patterns in XBOS
-	+ grant/check tools for XBOS services
-	+ checking for permissions
-	+ patterns
-	
+
+
 
 ## Terminology
 
 **entity**: the principal in the system; a verifying/signing (public/private) key pair
 
-```	
+```
 ┳ Type: Entity key file
 ┣┳ Entity VK=jMYG9Oj0bqbmITTSqdACFBztgNcVR2oE1w4tglmQyGQ=
 ┃┣ Signature: valid
@@ -65,7 +59,7 @@ gvnMwdNvhD5ClAuF8SQzrp-Ywcjx9c1m4du9N5MRCXs=/devices/enlighted/s.enlighted/Senso
 ┣┳ DOT cZ27izQDaIkWGwet3g0SJToopSfiNzlM63S2cTLj2Ts=
 ┃┣ Signature: valid
 ┃┣ Registry: valid
-┃┣ From: 
+┃┣ From:
 ┃┣┳ Entity VK: rMvgqnEuhuCFU_HsNRMGWcq7vY0_cUqctijQuvb055s=
 ┃┃┣ Signature: valid
 ┃┃┣ Registry: valid
@@ -74,7 +68,7 @@ gvnMwdNvhD5ClAuF8SQzrp-Ywcjx9c1m4du9N5MRCXs=/devices/enlighted/s.enlighted/Senso
 ┃┃┣ Comment: Gabe Laptop
 ┃┃┣ Created: 2016-05-13T16:35:30-07:00
 ┃┃┣ Expires: 2026-05-11T16:35:30-07:00
-┃┣ To: 
+┃┣ To:
 ┃┣┳ UNKNOWN ENTITY, VK=X_3qDxKT9JOmpFzPy0o-Xu7JGdH1kiYYXBlYHc0p3Gk=
 ┃┣ URI: rMvgqnEuhuCFU_HsNRMGWcq7vY0_cUqctijQuvb055s=/s.giles/0/i.archiver/slot/query
 ┃┣ Permissions: P
@@ -139,7 +133,7 @@ BW2 Local Router status:
 ```
 
 There are a few environment variables you will want installed on your system to make working with BOSSWAVE easier:
-- `BW2_AGENT`: this is the local address of your BOSSWAVE agent. 
+- `BW2_AGENT`: this is the local address of your BOSSWAVE agent.
 	- example: `127.0.0.1:28589` (default)
 - `BW2_DEFAULT_ENTITY`: the full path to the entity you want to use. This is typically an "administrative entity" with liberal permissions, which is used to grant more restrictive permissions to other entities
 - `BW2_DEFAULT_BANKROLL`: the full path to the entity that has Ethereum cash attached to it. These funds are used to pay miners to insert records into the blockchain
@@ -207,7 +201,7 @@ You can also **mine** your own funds. Edit the BOSSWAVE agent configuration file
 
 All URIs in BOSSWAVE begin with a verifying key. The group of URIs that begin with the same verifying key all belong to the same **namespace**. The verifying key identifies the entity who has "root permissions" on the namespace. All valid Declarations of Trust (explained below) for URIs in a namespace must terminate at this root entity.
 
-The **namespace entity** is usually created with a long expiry time and is stored offline. 
+The **namespace entity** is usually created with a long expiry time and is stored offline.
 
 ### Aliases
 
@@ -216,7 +210,7 @@ To make verifying keys easier to work with, BOSSWAVE supports **aliases** which 
 ```
 06DZ14k6dhRognGUoSHofD8oS8CUaWwq4tH-FPW13UU=/thermostats/a/b/c
 ```
-can also be written as 
+can also be written as
 ```
 xbos/thermostats/a/b/c
 ```
@@ -231,8 +225,96 @@ The `--b64` argument is the verifying key of the entity you want to create an al
 
 ### Designated Router
 
+Recall that all URIs have a namespace, which is the verifying key that prefixes the URI. In order to *publish* and *subscribe* on URIs, the namespace needs to be *routable*, meaning it has a server that has agreed to carry the traffic on behalf of that namespace (i.e. be the *pub-sub broker* for the namespace). Usually, this server should be publicly addressable (with port 4514 open on the firewall), but some deployments may want to limit the accessibility.
 
+Setting up a designated router for a namespace is a multi-step process. Both the entity of the router  and the namespace entity need to agree.
+
+1. On the router, publish a `SRV` record to bind the IP and port of your server to the verifying key of the router. The `--dr` argument is the path to your router entity (`/etc/bw2/router.ent` by default):
+	```
+	sudo bw2 usrv --dr /etc/bw2/router.ent --srv 128.32.37.230:4514
+	```
+	You may need to refer directly to the `bw2` executable when using sudo:
+	```
+	sudo /usr/local/bin/bw2 usrv --dr /etc/bw2/router.ent --srv 128.32.37.230:4514
+	```
+2. On the router, make a *routing offer*. The `--ns` argument is the verifying key or alias of the namespace you want to route traffic for
+	```
+	sudo bw2 mkdroffer --dr /etc/bw2/router.ent --ns mynamespace
+	```
+3. Verify that this worked by querying for routing offers
+	```
+	$ bw2 listDRoffers --ns oski.demo
+	No accepted offers found
+	There are 1 open offers:
+ 		SNZv19fX34Zyj0tNu_EzLDmB7kDLOFrFcfnzSaWsHiA=
+	```
+4. On a machine that has access to the namespace key, accept the routing offer. The `--ns` argument is the path to the entity file for the namespace. We need to specify the entity file and not the verifying key because the entity file contains the private key, which is needed to sign this operation. The `--dr` argument is the verifying key of the router we want to carry traffic for our namespace. This can be found using the `listDRoffers` command above
+	```
+	bw2 acceptDRoffer --ns ns.ent --dr SNZv19fX34Zyj0tNu_EzLDmB7kDLOFrFcfnzSaWsHiA=
+	```
+5. Verify that this worked by re-checking the routing offers:
+	```
+	bw2 listDRoffers --ns oski.demo
+ 	Active affinity:
+   		NS : yDrnmqzJd6C7DF0c575upjQl3vOeCPSS9y4UVlKK8SY=
+   		DR : SNZv19fX34Zyj0tNu_EzLDmB7kDLOFrFcfnzSaWsHiA=
+  		SRV : 128.32.37.230:4514
+ 	There are 1 open offers:
+  		SNZv19fX34Zyj0tNu_EzLDmB7kDLOFrFcfnzSaWsHiA=
+  	```
 
 ### Administration
 
 Administration of a namespace is usually delegated to an **administrative entity** who has been given full permissions on the namespace. This administrative entity is usually owned by an individual (one or more) who performs most of the granting/revoking of permissions on that namespace. An entity can be an administrator for more than one namespace. Being the administrator for a namespace is only recommended a pattern for managing permissions  -- it is not enforced by BOSSWAVE.
+
+## Permissions
+
+For the sake of example, let us create a few entities that will represent colleagues. We defer the publish to the end to avoid multiple waits for confirmations
+
+```
+bw2 mke -o alice.ent --nopublish
+bw2 mke -o bob.ent --nopublish
+bw2 mke -o carol.ent --nopublish
+bw2 i --publish *.ent
+```
+
+To keep things simple, we are going to use some dummy URIs. Later, we will see how URIs are structured and how to deploy BW services.
+
+Let us say that Alice is the head of engineering. She ought to be able to do anything under the engineering section of the namespace. We can codify that as:
+
+```
+bw2 mkdot --from ns.ent --to alice.ent --uri "oski.demo/engineering/*" --ttl 5 --permissions "PC*"
+```
+
+This says that `alice.ent` is allowed to publish (P) and subscribe (C) including wildcards (`*`) on any URI beginning with oski.demo/engineering. The TTL parameter specifies over how many hops this this trust can be *re-delegated*. By default it is zero which says that we trust alice (one hop), but do not trust the people that she trusts (more than one hop). Note that although we are using alice.ent (the private key file) as a target for convenience, we could also use the full VK or an alias as the 'to' parameter. The 'from' parameter must be a private keyfile.
+
+Let us say that Bob is in charge of making reports, so Alice wants him to be able to read all the resources from the 'epic' project:
+
+```
+bw2 mkdot --from alice.ent --to bob.ent --uri "oski.demo/engineering/projects/epic/*" --permissions "C*"
+```
+
+Now let us see how this chain of trust is working. Let's ask bw2 to try find a chain of trust that allows bob to subscribe to some sensor data. As a small note, if you are following along extremely fast, the client BCIP of 2 confirmations is less strict than the code that validates permissions, which requires 5 confirmations, so you may need to wait 3 blocks (a minute or two) after executing the previous mkdot command and the following builchain command.
+
+```
+bw2 buildchain -t bob.ent --uri "oski.demo/engineering/projects/epic/sensorobj/interface" -x "C"
+```
+
+You should see something similar to:
+
+```
+┣┳ DChain hash= bBrkiAnbIYafEMjYk0jwDVybgcOXUhSSZFztTh0uwEQ=
+┃┣ Registry: UNKNOWN
+┃┣ Elaborated: True
+┃┣ Grants: C*
+┃┣ On: yDrnmqzJd6C7DF0c575upjQl3vOeCPSS9y4UVlKK8SY=/engineering/projects/epic/*
+┃┣ End TTL: 0
+```
+
+> Outline:
+> - granting permissions
+> 	+ bw2 guide from readme
+> 	+ URIs patterns in XBOS
+> 	+ grant/check tools for XBOS services
+> 	+ checking for permissions
+> 	+ patterns
