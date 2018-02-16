@@ -57,10 +57,10 @@ Security and authentication is not an afterthought but rather a core design requ
 
 - I am a building manager, and I want to deploy XBOS in my building/suite of buildings and store building data and metadata. Please look at the [Hardware Abstraction Layer](#hal) first then look at the [Storage and Metadata Layer (Core Services)](#sml).
 - I am a data scientist, and I want to build (applications, models, controllers, etc.) on top of XBOS. Please look at the [Application Layer (High-level Services)](#app).
-- I am a developer, and I want to contribute to the XBOS software stack. Please look at the [XBOS Main Components](#components) to see which one might be of interest to you.
+- I am a developer, and I want to contribute to the XBOS software stack. Please look at the [XBOS Main Components](#xbos-main-components) to see which one might be of interest to you.
 
 
-## <a name="components"></a> XBOS Main Components
+## XBOS Main Components
 This section presents more information and references to all of the XBOS technologies presented in the [Architecture](#architecture) section. Please refer to the [Getting Started](#started) section for which components might make sense to you as a starting point once you are familiar with BOSSWAVE.
 
 ### <a name="syndication"></a> Syndication
