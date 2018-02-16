@@ -10,6 +10,11 @@
     * [Installation](local_install.md#installation)
 * Core Services
     * [BOSSWAVE](bosswave.md)
+        * [Terminology](bosswave.md#terminology)
+        * [Installation](bosswave.md#installation)
+        * [Entities](bosswave.md#entities)
+        * [Namespaces](bosswave.md#namespaces)
+        * [Permissions](bosswave.md#permissions)
 	* [BTrDB](btrdb.md)
     * [Pundat](pundat.md)
         * [Configuration](pundat.md#configuration)

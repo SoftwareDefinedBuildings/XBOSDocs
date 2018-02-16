@@ -82,7 +82,7 @@ gvnMwdNvhD5ClAuF8SQzrp-Ywcjx9c1m4du9N5MRCXs=/devices/enlighted/s.enlighted/Senso
 
 **designated router**: the pub-sub broker responsible for routing messages on behalf of a namespace. Designated routers are bound to one or more namespaces by invoking one of the BOSSWAVE smart contracts. Designated routers also store persisted messages.
 
-## Installing BOSSWAVE
+## Installation
 
 The directions below all assume that BOSSWAVE is installed on your computer. If you are running Ubuntu and/or Mac OS X, you can install the "base" BOSSWAVE by running
 
