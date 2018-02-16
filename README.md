@@ -30,7 +30,7 @@ XBOS aims to standardize a modular design that enables Software-Defined access t
 - Tools for developing and deploying user-facing applications
 
 
-## <a name="architecture"></a> XBOS Architecture
+## XBOS Architecture
 XBOS is assembled from a family of open-source technologies, which can be found via the [XBOS Github](https://github.com/SoftwareDefinedBuildings/XBOS). The overall architecture of XBOS and a brief description of these technologies are presented below.
 
 ![](assets/xbos_arch_generic.png)
@@ -52,18 +52,18 @@ There is some flexibility in how these services can be placed on available compu
 ![](assets/XBOSservices.png)
 
 
-## <a name="started"></a> Getting Started with XBOS
+## Getting Started with XBOS
 Security and authentication is not an afterthought but rather a core design requirement in XBOS. Therefore, you should always start by getting familiar with the XBOS [syndication](#syndication) mechanisms and the BOSSWAVE terminology. Once you are familiar with BOSSWAVE, there are many places where you can get started with XBOS depending on your goal/role. Below are some examples.
 
-- I am a building manager, and I want to deploy XBOS in my building/suite of buildings and store building data and metadata. Please look at the [Hardware Abstraction Layer](#hal) first then look at the [Storage and Metadata Layer (Core Services)](#sml).
-- I am a data scientist, and I want to build (applications, models, controllers, etc.) on top of XBOS. Please look at the [Application Layer (High-level Services)](#app).
+- I am a building manager, and I want to deploy XBOS in my building/suite of buildings and store building data and metadata. Please look at the [Hardware Abstraction Layer](#hardware-abstraction-layer) first then look at the [Storage and Metadata Layer (Core Services)](#storage-and-metadata-layer).
+- I am a data scientist, and I want to build (applications, models, controllers, etc.) on top of XBOS. Please look at the [Application Layer (High-level Services)](#application-layer).
 - I am a developer, and I want to contribute to the XBOS software stack. Please look at the [XBOS Main Components](#xbos-main-components) to see which one might be of interest to you.
 
 
 ## XBOS Main Components
-This section presents more information and references to all of the XBOS technologies presented in the [Architecture](#architecture) section. Please refer to the [Getting Started](#started) section for which components might make sense to you as a starting point once you are familiar with BOSSWAVE.
+This section presents more information and references to all of the XBOS technologies presented in the [Architecture](#xbos-architecture) section. Please refer to the [Getting Started](#getting-started-with-xbos) section for which components might make sense to you as a starting point once you are familiar with BOSSWAVE.
 
-### <a name="syndication"></a> Syndication
+### Syndication
 
 #### BOSSWAVE
 
@@ -91,7 +91,7 @@ Publications:
 - [WAVE: a Decentralized Authorization System for IOT via Blockchain Smart Contracts](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2017/EECS-2017-234.html)
 
 
-### <a name="hal"></a> Hardware Abstraction Layer
+### Hardware Abstraction Layer
 
 #### Drivers
 
@@ -120,7 +120,7 @@ Publications:
 - TODO!
 
 
-### <a name="sml"></a> Storage and Metadata Layer (Core Services)
+### Storage and Metadata Layer
 
 #### BTrDB
 
@@ -193,7 +193,7 @@ Publications:
 - [Design and Analysis of a Query Processor for Brick](https://people.eecs.berkeley.edu/~gtfierro/papers/hoddb.pdf)
 
 
-### <a name="app"></a> Application Layer (High-level Services)
+### Application Layer
 
 XBOS makes it easy to develop data-oriented applications that leverage the hardware abstraction layer and core services. Some examples of applications written for XBOS are:
 
