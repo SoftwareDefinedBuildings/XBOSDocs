@@ -2,16 +2,14 @@
 
 
 ## What is XBOS?
+
 XBOS (e**X**tensible **B**uilding **O**perating **S**ystem) is an open-source large-scale distributed operating system for smart buildings. XBOS provides **secure**:
 - Real-time monitoring of building sensors
 - Control of building actuators
 - Collection, modeling, and analytics of building data
 - Advanced management and coordination of building systems/subsystems
 
-
-## XBOS Overarching Goal
-XBOS aims to standardize a modular design that enables Software-Defined access to Internet-connected programmable sensors and controllers. This can be achieved by ... TODO!
-
+XBOS aims to push the state-of-the-art in the operation, management, analysis and control of a *software-defined building*. XBOS integrates traditional vertical silos of building mangement -- lighting, HVAC, electrical -- by combining abstractions of underlying hardware, sensors and actuators with rich metadata description of those components and the relationships between them.
 
 ## Why XBOS?
 - XBOS provides fine-grained management of permissions for access to building resources, data, and controllers. These permissions are auditable, revocable, can be delegated, and are created and enforced without relying on any centralized authority. Delegated links can be replaced without re-granting the full chain of permissions. These features make XBOS suitable for handling the naturally complex administrative structures typical in building environments.
@@ -76,7 +74,7 @@ BOSSWAVE enforces guarantees not offered by existing pub/sub systems, namely the
 BOSSWAVE uses a fork of the Ethereum blockchain as decentralized storage for all identities and permissions.
 
 There are several components of BOSSWAVE relevant to XBOS:
-- **Designated routers**: these are public servers that route data to one or more namespaces. A namespace is TODO!
+- **Designated routers**: these are public servers that route data to one or more namespaces. A namespace is a collection of URIs that all start with the same public key.
 - **Agents**: these are local, persistent processes (usually one per server) that maintain a local copy of the blockchain and act as a local gateway for accessing the BOSSWAVE message bus
 
 Source code:
@@ -84,7 +82,8 @@ Source code:
 - https://github.com/immesys/bw2bind
 
 Docs:
-- TODO!
+- https://github.com/immesys/bw2
+- https://docs.xbos.io/bosswave.html
 
 Publications:
 - [Democratizing Authority in the Built Environment](http://bets.cs.berkeley.edu/publications/appliedwave.pdf)
@@ -95,16 +94,15 @@ Publications:
 
 #### Drivers
 
-TODO!
+Drivers implement one or more standard BOSSWAVE **interfaces* for hardware devices, building management systems, web services, and other resources. These drivers can report state by publishing on BOSSWAVE URIs called *signals* and receive commands by subscribing on BOSSWAVE URIs called *slots*. The format of the messages published on these URIs is also part of the interface definition. A driver can represent one or more devices (such as through a gateway) and expose one or more interfaces for each device. All interface implementations should behave identically, regardless of the underlying device or resource.
+
+XBOS defines a set of standard interfaces, [documented here](https://docs.xbos.io/driver_conventions.html).
 
 Source code:
-- TODO!
+- https://github.com/SoftwareDefinedBuildings/bw2-contrib
 
 Docs:
-- TODO!
-
-Publications:
-- TODO!
+- https://docs.xbos.io/driver_conventions.html
 
 #### Spawnpoint
 
@@ -114,10 +112,11 @@ Source code:
 - https://github.com/immesys/spawnpoint
 
 Docs:
-- TODO!
+- https://github.com/SoftwareDefinedBuildings/spawnpoint#spawnpoint
+- https://github.com/SoftwareDefinedBuildings/spawnpoint/wiki
 
 Publications:
-- TODO!
+- [Spawnpoint: Secure Deployment of Distributed, Managed Containers](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2018/EECS-2018-1.pdf)
 
 
 ### Storage and Metadata Layer
@@ -145,9 +144,6 @@ Source code:
 Docs:
 - https://docs.xbos.io/pundat.html
 
-Publications:
-- TODO!
-
 #### MDAL
 
 MDAL retrieves, aggregates and formats time-series data from BTrDB using queries that reference a Brick model. Brick models contain UUIDs referring to specific streams of time-series data. MDAL data queries refer to time-series streams using metadata (via a query against a Brick model) rather than explicitly referring to the identifiers of those streams.
@@ -160,18 +156,19 @@ Source code:
 Docs:
 - https://docs.xbos.io/mdal.html
 
-Publications:
-- TODO!
-
 #### Brick
 
-TODO!
+In existing Building Management Systems (BMS), contextual information (metadata) of sensors, systems and building structures is either absent or not consistently structured. What metadata does exist fails to capture the information needed by modern building applications such as fault detection, energy analysis, and model predictive control. Brick is an open-source, BSD-licensed development effort to create a uniform schema for representing metadata in buildings.
+
+Brick has two main components: a class hierarchy describing the family of building subsystems and the entities and equipment therein, and a minimal, principled set of relationships for describing the associations and connections between those entities. Brick uses these vocabularies to realize a building as a directed, labeled graph. The representation of this graph leverages the standard RDF data model, which means that Brick usage and development can use existing tooling. 
 
 Source code:
 - https://github.com/BuildSysUniformMetadata/brick
 
 Docs:
-- TODO!
+- [Making a Brick model](http://hoddb.org/making/)
+- [Brick query language](http://hoddb.org/query/)
+- [Example Brick models](https://github.com/SoftwareDefinedBuildings/BrickModels)
 
 Publications:
 - [Brick v1.0: Towards a Unified Metadata Schema for Buildings](https://people.eecs.berkeley.edu/~gtfierro/papers/brick.pdf)

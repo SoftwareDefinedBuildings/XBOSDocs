@@ -9,6 +9,7 @@
     * [Configuration](local_install.md#configuration)
     * [Installation](local_install.md#installation)
 * Core Services
+    * [BOSSWAVE](bosswave.md)
 	* [BTrDB](btrdb.md)
     * [Pundat](pundat.md)
         * [Configuration](pundat.md#configuration)
