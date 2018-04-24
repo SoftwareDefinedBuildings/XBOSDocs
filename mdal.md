@@ -161,7 +161,7 @@ query = {
 }
 ```
 
-- `Composition`: the order of variables and UUIDs to be included in the response matrix. Variables are defined in `Variables` key (below) and resolve to a set of UUIDs. UUIDs are the pointers used by the timeseries database and represent a single timeseries sequence
+- `Composition`: the order of variables and UUIDs to be included in the response matrix. Variables are defined in `Variables` key (below) and resolve to a set of UUIDs. UUIDs are the pointers used by the timeseries database and represent a single timeseries sequence. If you want to apply unit conversion to the UUIDs, you will need to have instead define the UUIDs using a variable definition below.
 - `Selectors`: for each timeseries stream, we can get the raw data, or we can get resampled min, mean and/or max (as well as bucket count). Each item in the `Composition` list has a corresponding selector. This is a set of flags:
 	- `MEAN`: selects the mean stream
 	- `MAX`: selects the max stream
@@ -172,7 +172,8 @@ query = {
 	Combine flags like `MEAN|MAX`
 - `Variables`: each variable mentioned in `Composition` has a definition here. Each variable needs the following fields:
     - `Name`: the name of the variable. Refer to the variable in `Composition` using this name
-    - `Definition`: the BRICK query that will be resolved to a set of UUIDs. The returned variables need to end in `_uuid`
+    - `Definition`: the Brick query that will be resolved to a set of UUIDs. The returned variables need to end in `_uuid`
+    - `UUIDS`: a list of additional UUIDs to append to this variable definition (can be used in addition or instead of the Brick query above). To perform unit conversion on data for these UUIDs, put those UUIDs here.
     - `Units`: the desired units for the stream; MDAL will perform the unit conversion if possible
 - `Time`: the temporal parameters of the data query
     - `T0`: the first half of the range (inclusive)
