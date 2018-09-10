@@ -12,7 +12,10 @@
 | **Name** | **Type** | **Description** | **Units** | **Required** |
 | :------- | :------- | :-------------- | :-------- | :----------- |
 | cooling_setpoint | double | Current cooling setpoint | Fahrenheit | true |
-| fan | boolean | Fan state of the thermostat | on/off | false |
+| enabled_cool_stages | integer | The number of cooling stages currently enabled for the thermostat | stages | false |
+| enabled_heat_stages | integer | The number of heating stages currently enabled for the thermostat | stages | false |
+| fan_mode | integer | Fan mode of the thermostat | 1 = auto, 2 = on, 3 = schedule/auto | true |
+| fan_state | boolean | Fan state of the thermostat | on/off | false |
 | heating_setpoint | double | Current heating setpoint | Fahrenheit | true |
 | mode | integer | The current operating policy of the thermostat | mode | true |
 | override | boolean | Override state of the thermostat. If the thermostat is in override mode, it will not follow its programmed schedule. | on/off | true |
@@ -29,9 +32,12 @@
     - `heating_setpoint`
     - `cooling_setpoint`
     - `override`
-    - `fan`
+    - `fan_state`
+    - `fan_mode`
     - `mode`
     - `state`
+    - `enabled_heat_stages`
+    - `enabled_cool_stages`
     - `time`
     
 
@@ -41,12 +47,16 @@
     - `heating_setpoint`
     - `cooling_setpoint`
     
+- `stages`:
+    - `enabled_heat_stages`
+    - `enabled_cool_stages`
+    
 - `state`:
     - `heating_setpoint`
     - `cooling_setpoint`
     - `override`
     - `mode`
-    - `fan`
+    - `fan_mode`
     
 
 
@@ -69,15 +79,18 @@ func main() {
 
 	// subscribe
 	type signal struct {
-		Temperature       float64 `msgpack:"temperature"`
-		Relative_humidity float64 `msgpack:"relative_humidity"`
-		Heating_setpoint  float64 `msgpack:"heating_setpoint"`
-		Cooling_setpoint  float64 `msgpack:"cooling_setpoint"`
-		Override          bool    `msgpack:"override"`
-		Fan               bool    `msgpack:"fan"`
-		Mode              int64   `msgpack:"mode"`
-		State             int64   `msgpack:"state"`
-		Time              int64   `msgpack:"time"`
+		Temperature         float64 `msgpack:"temperature"`
+		Relative_humidity   float64 `msgpack:"relative_humidity"`
+		Heating_setpoint    float64 `msgpack:"heating_setpoint"`
+		Cooling_setpoint    float64 `msgpack:"cooling_setpoint"`
+		Override            bool    `msgpack:"override"`
+		Fan_state           bool    `msgpack:"fan_state"`
+		Fan_mode            int64   `msgpack:"fan_mode"`
+		Mode                int64   `msgpack:"mode"`
+		State               int64   `msgpack:"state"`
+		Enabled_heat_stages int64   `msgpack:"enabled_heat_stages"`
+		Enabled_cool_stages int64   `msgpack:"enabled_cool_stages"`
+		Time                int64   `msgpack:"time"`
 	}
 	c, err := client.Subscribe(&bw2.SubscribeParams{
 		URI: base_uri + "/signal/info",
