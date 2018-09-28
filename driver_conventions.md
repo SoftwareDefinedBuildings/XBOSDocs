@@ -18,6 +18,8 @@ In a BOSSWAVE URI, we use the following standard structure:![](/assets/BOSSWAVE 
 
 `<signal, slot name>`: this is the name of the signal or slot. These are defined by the corresponding interface.
 
+The details for specific drivers can be found in the [git repository](https://github.com/SoftwareDefinedBuildings/bw2-contrib/tree/master/driver) of the drivers and in the "DRIVERS" section of this document.
+
 ## Message Types and Payload Objects
 
 All messages exchanged on BOSSWAVE contain 0 or more **payload objects**. A payload object is a combination of a serialized binary data blob and a **payload object ID number** \(or **PO num**\). A **PO num** is a 32-bit number \(typically written in dot-decimal form\) that represents a combination of the _serialization \_and \_contents_ of the corresponding binary data blob.
