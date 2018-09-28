@@ -155,7 +155,7 @@ GLOBAL OPTIONS:
 
 To add/remove archive requests, we use a special YAML file which we will refer to as `archive.yml`. This file contains archive requests and other relevant configuration.
 
-Here is an example `archive.yml` file that contains all of the relevant components. This archive file is for a hypothetical service that publishes data for several sensors on URIs like `scratch.ns/service/s.sensor/<sensorname>/i.board/signal/reading`; we want to extract the "Temperature" and "Occupancy" fields from the published messages for all sensors.
+Here is an example `archive.yml` file that contains all of the relevant components. This archive file is for a hypothetical service that publishes data for several sensors on URIs like `scratch.ns/service/s.sensor/<sensorname>/i.board/signal/reading`; we want to extract the "Supply Air Flow" and "Supply Air Temperature Setpoint" fields from the published messages for all sensors.
 
 ```yaml
 # For long URIs, it can be helpful to factor out a long shared prefix to make the rest of the file more readable.
